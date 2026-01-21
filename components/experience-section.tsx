@@ -85,7 +85,15 @@ export function ExperienceSection() {
             -webkit-backdrop-filter: blur(40px);
             box-shadow: hsl(var(--exp-hue2) 50% 2%) 0px 10px 16px -8px, hsl(var(--exp-hue2) 50% 4%) 0px 20px 36px -14px;
             overflow: visible;
-            padding: 2rem;
+            padding: 1.5rem;
+            max-width: 100%;
+          }
+
+          @media (min-width: 1367px) {
+            .exp-grid {
+              max-width: 1000px;
+              margin: 0 auto;
+            }
           }
 
           @media (max-width: 1500px) {
@@ -365,7 +373,7 @@ export function ExperienceSection() {
           .exp-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 2rem;
+            gap: 1.5rem;
           }
 
           @media (max-width: 1366px) {

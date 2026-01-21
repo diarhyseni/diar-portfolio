@@ -491,7 +491,7 @@ export function ContactSection() {
         `
       }} />
       <section id="contact" aria-label="Contact">
-        <div className="max-w-6xl mx-auto w-full">
+        <div className="max-w-5xl mx-auto w-full">
           <div className="max-w-2xl mx-auto">
             {/* Contact Form */}
             <div className="contact-card">

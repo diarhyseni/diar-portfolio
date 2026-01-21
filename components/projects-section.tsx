@@ -104,7 +104,7 @@ export function ProjectsSection() {
             min-height: 130vh;
             display: flex;
             align-items: center;
-            padding: 2rem 6rem;
+            padding: 2rem 2rem;
             scroll-snap-align: start;
             scroll-snap-stop: always;
             background: #000000;
@@ -114,15 +114,15 @@ export function ProjectsSection() {
             background-blend-mode: hard-light;
           }
 
-          @media (max-width: 1500px) {
+          @media (min-width: 1024px) {
             #projects {
-              padding: 2rem 4rem;
+              padding: 2rem 3rem;
             }
           }
 
-          @media (max-width: 1366px) {
+          @media (min-width: 1400px) {
             #projects {
-              padding: 2rem 3rem;
+              padding: 2rem 4rem;
             }
           }
 

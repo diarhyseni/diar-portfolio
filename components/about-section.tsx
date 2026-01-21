@@ -128,7 +128,15 @@ export function AboutSection() {
             -webkit-backdrop-filter: blur(20px);
             box-shadow: hsl(var(--about-hue2) 50% 2%) 0px 10px 16px -8px, hsl(var(--about-hue2) 50% 4%) 0px 20px 36px -14px;
             overflow: visible;
-            padding: 2rem;
+            padding: 1.5rem;
+            max-width: 100%;
+          }
+
+          @media (min-width: 1201px) {
+            .about-grid {
+              max-width: 1000px;
+              margin: 0 auto;
+            }
           }
 
           .about-card-top {
@@ -385,7 +393,18 @@ export function AboutSection() {
             -webkit-backdrop-filter: blur(40px) !important;
             box-shadow: hsl(var(--about-hue2) 50% 2%) 0px 10px 16px -8px, hsl(var(--about-hue2) 50% 4%) 0px 20px 36px -14px;
             overflow: visible;
-            padding: 2rem;
+            padding: 1.5rem;
+          }
+
+          @media (min-width: 1201px) {
+            .about-grid {
+              max-width: 1200px;
+              margin: 0 auto;
+            }
+            
+            .about-card {
+              padding: 1.5rem;
+            }
           }
 
           .about-text-card .shine,
@@ -805,8 +824,8 @@ export function AboutSection() {
         `
       }} />
       <section id="about" aria-label="About" className="px-4">
-        <div className="max-w-6xl mx-auto w-full">
-        <div className="grid md:grid-cols-2 gap-12 items-center about-grid">
+        <div className="max-w-5xl mx-auto w-full">
+        <div className="grid md:grid-cols-2 gap-8 items-center about-grid">
           {/* Left side - Text content */}
           <div className="space-y-6 animate-in fade-in slide-in-from-left duration-700">
             <div className="about-text-card about-card">
