@@ -695,6 +695,12 @@ export function HeroSection() {
         }
 
 
+        @media (max-width: 1600px) {
+          .hero-section-wrapper figure {
+            max-width: 600px;
+          }
+        }
+
         @media (min-width: 640px) {
           .hero-section-wrapper figure .hero-buttons {
             flex-direction: row;

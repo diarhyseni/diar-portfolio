@@ -88,9 +88,15 @@ export function SkillsSection() {
             overflow: hidden;
           }
 
-          @media (max-width: 1500px) {
+          @media (max-width: 1600px) {
             #skills {
               padding: 1.5rem 0.75rem;
+            }
+          }
+
+          @media (max-width: 1500px) {
+            #skills {
+              padding: 1.25rem 0.5rem;
             }
           }
 
@@ -117,28 +123,49 @@ export function SkillsSection() {
             padding: 2rem;
           }
 
-          @media (max-width: 1500px) {
+          @media (max-width: 1600px) {
             .skills-card {
               padding: 1.5rem;
             }
 
-            .skills-section-title {
-              font-size: 16px;
-              margin-bottom: 1rem;
-            }
-
-            .skills-filters {
-              margin-bottom: 1.5rem;
-            }
-
-            .skills-grid {
-              grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-              gap: 0.5rem;
+            .skill-icon {
+              font-size: 2rem !important;
             }
 
             .skill-item {
-              padding: 0.75rem 0.5rem;
+              padding: 1rem 0.25rem !important;
+            }
+          }
+
+          @media (max-width: 1500px) {
+            #skills {
+              padding: 1.25rem 0.5rem;
+            }
+
+            .skills-card {
+              padding: 2rem;
+              transform: scale(0.8);
+              transform-origin: center;
+            }
+
+            .skills-section-title {
+              font-size: 16px;
+              margin-bottom: 0.75rem;
+            }
+
+            .skills-filters {
+              margin-bottom: 1rem;
               gap: 0.5rem;
+            }
+
+            .skills-grid {
+              grid-template-columns: repeat(6, 1fr);
+              gap: 0.375rem;
+            }
+
+            .skill-item {
+              padding: 0.5rem 0.375rem !important;
+              gap: 0.375rem;
             }
 
             .skill-icon {
@@ -445,7 +472,7 @@ export function SkillsSection() {
             align-items: center;
             justify-content: center;
             gap: 0.75rem;
-            padding: 1.5rem 1rem;
+            padding: 1.0rem 0.75rem !important;
             border-radius: calc(var(--skills-radius) * 0.5);
             transition: all 0.3s ease;
           }

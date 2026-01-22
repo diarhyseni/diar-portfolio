@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 
 interface Experience {
   period: string
@@ -20,6 +20,8 @@ export function ExperienceSection() {
   const [experiences, setExperiences] = useState<Experience[]>([])
   const [educations, setEducations] = useState<Education[]>([])
   const [loading, setLoading] = useState(true)
+  const [isVisible, setIsVisible] = useState(false)
+  const sectionRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -46,6 +48,29 @@ export function ExperienceSection() {
     }
 
     fetchData()
+  }, [])
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true)
+          }
+        })
+      },
+      { threshold: 0.1 }
+    )
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current)
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current)
+      }
+    }
   }, [])
 
   return (
@@ -97,8 +122,19 @@ export function ExperienceSection() {
           }
 
           @media (max-width: 1500px) {
+            #experience {
+              min-height: 100vh;
+              padding: 1rem;
+            }
+
             .exp-card {
               padding: 1.5rem;
+              transform: scale(0.9);
+              transform-origin: center;
+            }
+
+            .exp-grid {
+              gap: 0.5rem;
             }
 
             .exp-section-title {
@@ -107,8 +143,8 @@ export function ExperienceSection() {
             }
 
             .exp-item {
-              margin-bottom: 1rem !important;
-              padding-bottom: 1rem !important;
+              margin-bottom: 0.75rem !important;
+              padding-bottom: 0.75rem !important;
             }
 
             .exp-company {
@@ -328,8 +364,8 @@ export function ExperienceSection() {
           }
 
           .exp-item {
-            margin-bottom: 2rem;
-            padding-bottom: 2rem;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
           }
 
@@ -373,20 +409,25 @@ export function ExperienceSection() {
           .exp-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
+            gap: 0.75rem;
           }
 
           @media (max-width: 1366px) {
+            .exp-card {
+              transform: scale(0.8);
+              transform-origin: center;
+            }
+
             .exp-grid {
-              grid-template-columns: 1fr;
-              gap: 1.5rem;
+              grid-template-columns: 1fr 1fr;
+              gap: 0.75rem;
             }
 
             .exp-grid > div {
-              width: 50%;
-              max-width: 50%;
-              margin-left: auto;
-              margin-right: auto;
+              width: 100%;
+              max-width: 100%;
+              margin-left: 0;
+              margin-right: 0;
             }
           }
 
@@ -410,14 +451,14 @@ export function ExperienceSection() {
           }
         `
       }} />
-      <section id="experience" aria-label="Experience and Education" className="px-4">
+      <section id="experience" aria-label="Experience and Education" className="px-4" ref={sectionRef}>
         <div className="max-w-6xl mx-auto w-full">
           {loading ? (
             <div className="text-center text-white/60 py-20">Loading...</div>
           ) : (
             <div className="exp-grid">
               {/* Experience Column */}
-              <div className="space-y-6 animate-in fade-in slide-in-from-left duration-700">
+              <div className={`space-y-6 ${isVisible ? 'animate-in fade-in slide-in-from-left duration-1200' : 'opacity-0'}`}>
                 <div className="exp-card">
                   <span className="shine shine-top"></span>
                   <span className="shine shine-bottom"></span>
@@ -428,7 +469,7 @@ export function ExperienceSection() {
                   <p className="exp-section-title">Experience</p>
                   {experiences.length > 0 ? (
                     experiences.map((exp, index) => (
-                      <div key={index} className="exp-item">
+                      <div key={index} className={`exp-item ${isVisible ? 'animate-in fade-in slide-in-from-bottom duration-700' : 'opacity-0'}`} style={isVisible ? { animationDelay: `${index * 100}ms` } : {}}>
                         <div className="exp-period">{exp.period}</div>
                         <div className="exp-company">{exp.company}</div>
                         <div className="exp-position">{exp.position}</div>
@@ -442,7 +483,7 @@ export function ExperienceSection() {
               </div>
 
               {/* Education Column */}
-              <div className="space-y-6 animate-in fade-in slide-in-from-right duration-700 delay-200">
+              <div className={`space-y-6 ${isVisible ? 'animate-in fade-in slide-in-from-right duration-1200 delay-300' : 'opacity-0'}`}>
                 <div className="exp-card">
                   <span className="shine shine-top"></span>
                   <span className="shine shine-bottom"></span>
@@ -453,7 +494,7 @@ export function ExperienceSection() {
                   <p className="exp-section-title">Education</p>
                   {educations.length > 0 ? (
                     educations.map((edu, index) => (
-                      <div key={index} className="exp-item">
+                      <div key={index} className={`exp-item ${isVisible ? 'animate-in fade-in slide-in-from-bottom duration-700' : 'opacity-0'}`} style={isVisible ? { animationDelay: `${index * 100}ms` } : {}}>
                         <div className="exp-period">{edu.period}</div>
                         <div className="exp-company">{edu.institution}</div>
                         <div className="exp-position">{edu.degree}</div>

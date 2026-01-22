@@ -30,6 +30,22 @@ export function ProjectsSection() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [projects, setProjects] = useState<Project[]>([])
   const [loading, setLoading] = useState(true)
+  const [maxProjects, setMaxProjects] = useState(8)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setMaxProjects(window.innerWidth >= 1920 ? 8 : 9)
+    }
+
+    // Set initial value
+    handleResize()
+
+    // Add event listener
+    window.addEventListener('resize', handleResize)
+
+    // Cleanup
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -245,8 +261,8 @@ export function ProjectsSection() {
           }
 
           .project-tech-icon {
-            width: 1.4rem;
-            height: 1.4rem;
+            width: 1.2rem;
+            height: 1.2rem;
             color: rgba(255, 255, 255, 0.9);
             transition: all 0.3s ease;
           }
@@ -434,6 +450,22 @@ export function ProjectsSection() {
             padding: 0 !important;
           }
 
+          .projects-grid {
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+          }
+
+          @media (min-width: 768px) {
+            .projects-grid {
+              grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+          }
+
+          @media (min-width: 1920px) {
+            .projects-grid {
+              grid-template-columns: repeat(4, minmax(0, 1fr));
+            }
+          }
+
           @media (max-width: 768px) {
             [data-slot="dialog-content"] {
               max-width: 90vw !important;
@@ -482,8 +514,8 @@ export function ProjectsSection() {
             <div className="text-center text-white/60 py-20">No projects available yet</div>
           ) : (
             <>
-            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {projects.slice(0, 8).map((project, index) => (
+            <div className="projects-grid grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {projects.slice(0, maxProjects).map((project, index) => (
             <div
                 key={project.id}
                 className="project-card animate-in fade-in slide-in-from-bottom"
@@ -536,9 +568,9 @@ export function ProjectsSection() {
               </div>
             ))}
             </div>
-            <div className="text-center mt-12">
+            <div className="text-center mt-12 mb-24">
               <p className="text-white/70" style={{ fontFamily: "'Science Gothic', sans-serif", fontWeight: 300 }}>
-                + 50 projects more,{" "}
+                + 30 projects more,{" "}
                 <button
                   onClick={() => {
                     const section = document.getElementById('contact');

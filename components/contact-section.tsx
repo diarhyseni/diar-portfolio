@@ -97,6 +97,111 @@ export function ContactSection() {
             padding: 2rem;
           }
 
+          @media (max-width: 1500px) {
+            #contact {
+              min-height: auto;
+              height: 100vh;
+              max-height: 100vh;
+              overflow: hidden;
+              padding: 1rem;
+            }
+
+            .contact-card {
+              transform: scale(0.8);
+              transform-origin: center;
+            }
+          }
+
+          @media (max-width: 1366px) {
+            .contact-card {
+              padding: 1.25rem;
+            }
+
+            .contact-section-title {
+              font-size: 14px;
+              margin-bottom: 0.5rem;
+            }
+
+            .contact-heading {
+              font-size: 22px;
+              margin-bottom: 0.5rem;
+            }
+
+            .contact-description {
+              font-size: 12px;
+              margin-bottom: 1.25rem;
+            }
+
+            .contact-form-group {
+              margin-bottom: 0.75rem !important;
+            }
+
+            .contact-form-label {
+              font-size: 12px;
+              margin-bottom: 0.25rem;
+            }
+
+            .contact-form-input,
+            .contact-form-textarea {
+              padding: 8px 12px;
+              font-size: 12px;
+            }
+
+            .contact-form-textarea {
+              min-height: 80px;
+            }
+
+            .contact-button {
+              padding: 10px 24px;
+              font-size: 13px;
+            }
+          }
+
+          @media (max-width: 1600px) {
+            .contact-card {
+              padding: 2rem;
+            }
+
+            .contact-section-title {
+              font-size: 16px;
+              margin-bottom: 0.75rem;
+            }
+
+            .contact-heading {
+              font-size: 26px;
+              margin-bottom: 0.75rem;
+            }
+
+            .contact-description {
+              font-size: 13px;
+              margin-bottom: 1.5rem;
+            }
+
+            .contact-form-group {
+              margin-bottom: 0.8rem !important;
+            }
+
+            .contact-form-label {
+              font-size: 13px;
+              margin-bottom: 0.375rem;
+            }
+
+            .contact-form-input,
+            .contact-form-textarea {
+              padding: 10px 14px;
+              font-size: 13px;
+            }
+
+            .contact-form-textarea {
+              min-height: 90px;
+            }
+
+            .contact-button {
+              padding: 12px 28px;
+              font-size: 14px;
+            }
+          }
+
           @media (max-width: 768px) {
             .contact-card {
               padding: 24px;
@@ -577,10 +682,10 @@ export function ContactSection() {
               )}
 
               {/* Social Links */}
-              <div className="lg:mt-8 mt-4 lg:pt-8 pt-4 border-t border-white/10">
+              <div className="lg:mt-4 mt-2 lg:pt-4 pt2 border-t border-white/10">
                 {isSubmitted ? (
                   <p className="text-center text-white/70 mb-6" style={{ fontFamily: "'Science Gothic', sans-serif", fontWeight: 300, fontSize: '14px' }}>
-                    In the meantime please check my social media:
+                    In the meantime, send email or connect with me on:
                   </p>
                 ) : (
                   <p className="text-center text-white/70 mb-6" style={{ fontFamily: "'Science Gothic', sans-serif", fontWeight: 300, fontSize: '14px' }}>OR</p>
@@ -606,7 +711,7 @@ export function ContactSection() {
                 </div>
                 {!isSubmitted && (
                   <p className="text-center text-white/60 mt-6" style={{ fontFamily: "'Science Gothic', sans-serif", fontWeight: 300, fontSize: '13px', lineHeight: '1.6' }}>
-                    Always open for new projects or collaborations.
+                    Open for new projects or collaborations.
                   </p>
                 )}
               </div>

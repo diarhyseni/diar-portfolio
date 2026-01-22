@@ -15,14 +15,23 @@ This guide will help you set up email notifications for contact form submissions
 3. Give it a name (e.g., "Portfolio Contact Form")
 4. Copy the API key (you'll only see it once!)
 
-## Step 3: Verify Your Domain (Optional but Recommended)
+## Step 3: Domain Verification (Optional - NOT Required!)
 
-For production, you should verify your domain:
-1. Go to [Resend Domains](https://resend.com/domains)
-2. Add your domain
-3. Follow the DNS verification steps
+**Good News:** You can use Resend WITHOUT any DNS changes! 
 
-For testing, you can use the default `onboarding@resend.dev` sender.
+The code is already configured to use `onboarding@resend.dev` as the sender, which works immediately without domain verification. This is perfect for:
+- ✅ Testing
+- ✅ Production (if you don't mind using Resend's default sender)
+- ✅ Free domains that don't support custom DNS
+
+**When to verify your domain:**
+- Only if you want to send from your own email address (e.g., `noreply@yourdomain.com`)
+- This requires DNS access and adding SPF/DKIM records
+- Not necessary for receiving contact form submissions!
+
+**Current Setup (No DNS Required):**
+- Sender: `onboarding@resend.dev` (works immediately)
+- Recipient: Your email (set in `CONTACT_NOTIFICATION_EMAIL`)
 
 ## Step 4: Add Environment Variables
 
@@ -30,7 +39,7 @@ Add these to your `.env.local` file:
 
 ```env
 # Resend API Key (required)
-RESEND_API_KEY=re_xxxxxxxxxxxxxxxxxxxxx
+RESEND_API_KEY=re_b3uZbWuX_JRjpGYBBn7ZZhC8Lk5dXqacr
 
 # Email to receive notifications (defaults to diarhyseni4@gmail.com if not set)
 CONTACT_NOTIFICATION_EMAIL=diarhyseni4@gmail.com
@@ -48,9 +57,20 @@ RESEND_FROM_EMAIL=onboarding@resend.dev
 
 ## Troubleshooting
 
-- **Email not sending?** Check that `RESEND_API_KEY` is set correctly
-- **Using default sender?** Make sure `RESEND_FROM_EMAIL` is set to a verified email
-- **Not receiving emails?** Check spam folder and verify `CONTACT_NOTIFICATION_EMAIL` is correct
+- **Email not sending?** 
+  - Check that `RESEND_API_KEY` is set correctly in `.env.local`
+  - Make sure you've restarted your dev server after adding the API key
+  - Check the terminal/console for error messages
+  
+- **Not receiving emails?** 
+  - Check spam/junk folder (emails from `onboarding@resend.dev` might go there initially)
+  - Verify `CONTACT_NOTIFICATION_EMAIL` is set to your correct email address
+  - Check Resend dashboard for email logs: https://resend.com/emails
+  
+- **Using free domain?** 
+  - No problem! The default `onboarding@resend.dev` sender works perfectly
+  - No DNS changes needed
+  - You'll receive emails at the address set in `CONTACT_NOTIFICATION_EMAIL`
 
 ## Free Tier Limits
 
