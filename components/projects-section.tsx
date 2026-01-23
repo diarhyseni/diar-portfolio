@@ -130,6 +130,20 @@ export function ProjectsSection() {
             background-blend-mode: hard-light;
           }
 
+          @media (min-width: 768px) and (max-width: 1024px) {
+            #projects {
+              padding: 0;
+              min-height: 100vh;
+              height: 100vh;
+              display: flex;
+              align-items: center;
+            }
+
+            .projects-grid {
+              grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+            }
+          }
+
           @media (min-width: 1024px) {
             #projects {
               padding: 2rem 3rem;

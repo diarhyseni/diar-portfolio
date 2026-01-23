@@ -119,7 +119,27 @@
   * {
     @apply border-border outline-ring/50;
   }
-  body {
+  html, body {
     @apply bg-background text-foreground;
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+  
+  body {
+    position: relative;
+    width: 100%;
+    overflow-x: hidden;
+  }
+  
+  @media (max-width: 768px) {
+    html, body {
+      overflow-x: hidden !important;
+      max-width: 100vw !important;
+      width: 100% !important;
+    }
+    
+    * {
+      max-width: 100%;
+    }
   }
 }

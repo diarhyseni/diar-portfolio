@@ -23,6 +23,24 @@ export default function Page() {
             }
           }
 
+          /* Prevent horizontal scrolling */
+          html, body {
+            overflow-x: hidden !important;
+            max-width: 100vw !important;
+            width: 100% !important;
+          }
+          
+          @media (max-width: 768px) {
+            * {
+              max-width: 100%;
+            }
+            
+            section, #home, #about, #experience, #skills, #projects, #contact {
+              max-width: 100vw !important;
+              overflow-x: hidden !important;
+            }
+          }
+
           /* Add large gaps between sections on tablet and mobile */
           @media (max-width: 1499px) {
             #home,
@@ -50,7 +68,7 @@ export default function Page() {
           </div>
         </header>
 
-        <div className="md:snap-y md:snap-mandatory overflow-y-scroll h-auto md:h-screen" style={{ scrollPaddingTop: '0px' }}>
+        <div className="md:snap-y md:snap-mandatory overflow-y-scroll overflow-x-hidden h-auto md:h-screen w-full" style={{ scrollPaddingTop: '0px', maxWidth: '100vw' }}>
           <HeroSection />
           <AboutSection />
           <ExperienceSection />

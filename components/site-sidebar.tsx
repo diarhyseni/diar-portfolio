@@ -43,15 +43,39 @@ export function SiteSidebar({ className }: { className?: string }) {
   React.useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        const visibleEntry = entries
+        // Find all intersecting sections
+        const intersectingSections = entries
           .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]
+          .map((entry) => ({
+            id: entry.target.id,
+            ratio: entry.intersectionRatio,
+            top: entry.boundingClientRect.top,
+            bottom: entry.boundingClientRect.bottom,
+            height: entry.boundingClientRect.height,
+          }))
 
-        if (visibleEntry?.target?.id) {
-          setActiveSection(visibleEntry.target.id)
+        if (intersectingSections.length > 0) {
+          // Prioritize sections that are more centered in the viewport
+          const viewportCenter = window.innerHeight / 2
+          const sortedSections = intersectingSections.sort((a, b) => {
+            // Calculate distance from viewport center
+            const aCenter = a.top + a.height / 2
+            const bCenter = b.top + b.height / 2
+            const aDistanceFromCenter = Math.abs(aCenter - viewportCenter)
+            const bDistanceFromCenter = Math.abs(bCenter - viewportCenter)
+            
+            // Prefer section closer to center, then by intersection ratio
+            if (Math.abs(aDistanceFromCenter - bDistanceFromCenter) < 50) {
+              return b.ratio - a.ratio
+            }
+            return aDistanceFromCenter - bDistanceFromCenter
+          })
+
+          const activeId = sortedSections[0].id
+          setActiveSection(activeId)
         }
       },
-      { threshold: 0.35, rootMargin: '-80px 0px -40%' },
+      { threshold: [0, 0.1, 0.25, 0.5, 0.75, 1], rootMargin: '-100px 0px -50%' },
     )
 
     NAV_SECTIONS.forEach(({ id }) => {
@@ -65,6 +89,8 @@ export function SiteSidebar({ className }: { className?: string }) {
   const handleNavigate = (id: string) => {
     const section = document.getElementById(id)
     if (section) {
+      // Immediately set the clicked section as active
+      setActiveSection(id)
       section.scrollIntoView({ behavior: 'smooth', block: 'start' })
       setOpenMobile(false)
     }

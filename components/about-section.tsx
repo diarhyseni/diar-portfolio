@@ -83,18 +83,107 @@ export function AboutSection() {
             #about {
               height: auto;
               min-height: auto;
-              padding: 2rem 1rem;
+              padding: 1.5rem 0.75rem;
             }
 
             .about-grid {
               grid-template-columns: 1fr !important;
+              gap: 2rem;
+            }
+
+            #about > div:first-child {
+              transform: scale(0.80);
+              transform-origin: top center;
+            }
+          }
+
+          /* iPad specific styles */
+          @media (min-width: 768px) and (max-width: 1024px) {
+            #about {
+              padding: 0;
+              min-height: 100vh;
+              height: 100vh;
+              display: flex;
+              align-items: center;
+            }
+
+            #about > div:first-child {
+              transform: scale(0.95);
+              transform-origin: center;
+            }
+
+            .about-grid {
+              grid-template-columns: 1fr !important;
+              gap: 2.5rem;
             }
 
             .about-grid > div {
-              width: 50%;
-              max-width: 50%;
+              width: 90%;
+              max-width: 90%;
               margin-left: auto;
               margin-right: auto;
+            }
+
+            .about-grid .grid.grid-cols-2 {
+              grid-template-columns: repeat(2, 1fr) !important;
+            }
+
+            .about-card {
+              padding: 1.5rem;
+            }
+
+            .about-text-card.about-card {
+              padding: 2rem;
+            }
+
+            .about-text-card h2 {
+              font-size: 2rem !important;
+            }
+
+            .about-text-card p {
+              font-size: 0.95rem !important;
+            }
+
+            .about-buttons {
+              flex-direction: row;
+              gap: 1rem;
+            }
+
+            .about-button {
+              flex: 1;
+              padding: 0.875rem 1.5rem;
+              font-size: 14px;
+            }
+
+            .strength-icon {
+              width: 2.5rem !important;
+              height: 2.5rem !important;
+            }
+
+            .about-card h3 {
+              font-size: 1rem !important;
+            }
+
+            .about-card p {
+              font-size: 0.875rem !important;
+            }
+
+            .about-info-grid {
+              gap: 1.25rem;
+              margin: 1rem 0 2rem 0;
+            }
+
+            .about-info-label {
+              font-size: 14px !important;
+            }
+
+            .about-info-value {
+              font-size: 13px !important;
+            }
+
+            .about-info-item-row {
+              grid-template-columns: 1fr 1fr;
+              gap: 1.25rem;
             }
           }
 

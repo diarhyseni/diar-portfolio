@@ -66,10 +66,11 @@ export function ContactSection() {
           }
 
           #contact {
+            height: 100vh;
             min-height: 100vh;
             display: flex;
             align-items: center;
-            padding: 2rem 1rem;
+            padding: 0;
             scroll-snap-align: start;
             background: #08090d;
             background-image: url(https://assets.codepen.io/13471/abstract-light.jpg), linear-gradient(to right in oklab, hsl(var(--contact-hue2) 50% 75%), hsl(var(--contact-hue1) 50% 75%));
@@ -97,18 +98,195 @@ export function ContactSection() {
             padding: 2rem;
           }
 
+          @media (max-width: 1750px) {
+            .contact-card {
+              padding: 1.8rem; /* 2rem * 0.9 = 10% reduction */
+            }
+
+            .contact-section-title {
+              font-size: 16.2px; /* 18px * 0.9 = 10% reduction */
+              margin-bottom: 0.9rem; /* 1rem * 0.9 = 10% reduction */
+            }
+
+            .contact-heading {
+              font-size: 28.8px; /* 32px * 0.9 = 10% reduction */
+              margin-bottom: 0.9rem; /* 1rem * 0.9 = 10% reduction */
+            }
+
+            .contact-description {
+              font-size: 12.6px; /* 14px * 0.9 = 10% reduction */
+              margin-bottom: 1.8rem; /* 2rem * 0.9 = 10% reduction */
+            }
+
+            .contact-form-group {
+              margin-bottom: 1.35rem !important; /* 1.5rem * 0.9 = 10% reduction */
+            }
+
+                <form onSubmit={handleSubmit}>
+                  <div className="contact-form-row">
+                    <div className="contact-form-group">
+                      <label htmlFor="name" className="contact-form-label">
+                        Name
+                      </label>
+                      <input
+                        id="name"
+                        type="text"
+                        placeholder="Your name"
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        className="contact-form-input"
+                        required
+                      />
+                    </div>
+
+                    <div className="contact-form-group">
+                      <label htmlFor="email" className="contact-form-label">
+                        Email
+                      </label>
+                      <input
+                        id="email"
+                        type="email"
+                        placeholder="your@email.com"
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        className="contact-form-input"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div className="contact-form-group">
+                    <label htmlFor="message" className="contact-form-label">
+                      Message
+                    </label>
+                    <textarea
+                      id="message"
+                      placeholder="Tell me about your project..."
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      className="contact-form-textarea"
+                      required
+                    />
+                  </div>
+
+            .contact-form-label {
+              font-size: 12.6px; /* 14px * 0.9 = 10% reduction */
+              margin-bottom: 0.45rem; /* 0.5rem * 0.9 = 10% reduction */
+            }
+
+            .contact-form-input,
+            .contact-form-textarea {
+              padding: 10.8px 14.4px; /* 12px 16px * 0.9 = 10% reduction */
+              font-size: 12.6px; /* 14px * 0.9 = 10% reduction */
+            }
+
+            .contact-form-textarea {
+              min-height: 90px; /* 100px * 0.9 = 10% reduction */
+            }
+
+            .contact-button {
+              padding: 12.6px 28.8px; /* 14px 32px * 0.9 = 10% reduction */
+              font-size: 13.5px; /* 15px * 0.9 = 10% reduction */
+            }
+          }
+
+          @media (max-width: 1700px) {
+            .contact-card {
+              padding: 1.62rem; /* 1.8rem * 0.9 = additional 10% reduction from 1750px */
+            }
+
+            .contact-section-title {
+              font-size: 14.58px; /* 16.2px * 0.9 = additional 10% reduction from 1750px */
+              margin-bottom: 0.81rem; /* 0.9rem * 0.9 = additional 10% reduction from 1750px */
+            }
+
+            .contact-heading {
+              font-size: 25.92px; /* 28.8px * 0.9 = additional 10% reduction from 1750px */
+              margin-bottom: 0.81rem; /* 0.9rem * 0.9 = additional 10% reduction from 1750px */
+            }
+
+            .contact-description {
+              font-size: 11.34px; /* 12.6px * 0.9 = additional 10% reduction from 1750px */
+              margin-bottom: 1.62rem; /* 1.8rem * 0.9 = additional 10% reduction from 1750px */
+            }
+
+            .contact-form-group {
+              margin-bottom: 1.215rem !important; /* 1.35rem * 0.9 = additional 10% reduction from 1750px */
+            }
+
+            .contact-form-label {
+              font-size: 11.34px; /* 12.6px * 0.9 = additional 10% reduction from 1750px */
+              margin-bottom: 0.405rem; /* 0.45rem * 0.9 = additional 10% reduction from 1750px */
+            }
+
+            .contact-form-input,
+            .contact-form-textarea {
+              padding: 9.72px 12.96px; /* 10.8px 14.4px * 0.9 = additional 10% reduction from 1750px */
+              font-size: 11.34px; /* 12.6px * 0.9 = additional 10% reduction from 1750px */
+            }
+
+            .contact-form-textarea {
+              min-height: 81px; /* 90px * 0.9 = additional 10% reduction from 1750px */
+            }
+
+            .contact-button {
+              padding: 11.34px 25.92px; /* 12.6px 28.8px * 0.9 = additional 10% reduction from 1750px */
+              font-size: 12.15px; /* 13.5px * 0.9 = additional 10% reduction from 1750px */
+            }
+          }
+
           @media (max-width: 1500px) {
             #contact {
-              min-height: auto;
+              min-height: 100vh;
               height: 100vh;
               max-height: 100vh;
               overflow: hidden;
               padding: 1rem;
+              display: flex;
+              align-items: center;
             }
 
             .contact-card {
-              transform: scale(0.8);
-              transform-origin: center;
+              padding: 1.458rem; /* 1.62rem * 0.9 = additional 10% reduction from 1700px */
+            }
+
+            .contact-section-title {
+              font-size: 13.122px; /* 14.58px * 0.9 = additional 10% reduction from 1700px */
+              margin-bottom: 0.729rem; /* 0.81rem * 0.9 = additional 10% reduction from 1700px */
+            }
+
+            .contact-heading {
+              font-size: 23.328px; /* 25.92px * 0.9 = additional 10% reduction from 1700px */
+              margin-bottom: 0.729rem; /* 0.81rem * 0.9 = additional 10% reduction from 1700px */
+            }
+
+            .contact-description {
+              font-size: 10.206px; /* 11.34px * 0.9 = additional 10% reduction from 1700px */
+              margin-bottom: 1.458rem; /* 1.62rem * 0.9 = additional 10% reduction from 1700px */
+            }
+
+            .contact-form-group {
+              margin-bottom: 1.0935rem !important; /* 1.215rem * 0.9 = additional 10% reduction from 1700px */
+            }
+
+            .contact-form-label {
+              font-size: 10.206px; /* 11.34px * 0.9 = additional 10% reduction from 1700px */
+              margin-bottom: 0.3645rem; /* 0.405rem * 0.9 = additional 10% reduction from 1700px */
+            }
+
+            .contact-form-input,
+            .contact-form-textarea {
+              padding: 8.748px 11.664px; /* 9.72px 12.96px * 0.9 = additional 10% reduction from 1700px */
+              font-size: 10.206px; /* 11.34px * 0.9 = additional 10% reduction from 1700px */
+            }
+
+            .contact-form-textarea {
+              min-height: 72.9px; /* 81px * 0.9 = additional 10% reduction from 1700px */
+            }
+
+            .contact-button {
+              padding: 10.206px 23.328px; /* 11.34px 25.92px * 0.9 = additional 10% reduction from 1700px */
+              font-size: 10.935px; /* 12.15px * 0.9 = additional 10% reduction from 1700px */
             }
           }
 
@@ -199,6 +377,18 @@ export function ContactSection() {
             .contact-button {
               padding: 12px 28px;
               font-size: 14px;
+            }
+          }
+
+          @media (min-width: 768px) and (max-width: 1024px) {
+            #contact {
+              padding: 0 !important;
+              min-height: 100vh !important;
+              height: 100vh !important;
+              max-height: 100vh !important;
+              overflow: hidden !important;
+              display: flex !important;
+              align-items: center !important;
             }
           }
 
@@ -418,6 +608,25 @@ export function ContactSection() {
             margin-bottom: 1.5rem;
           }
 
+          .contact-form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+          }
+
+          .contact-form-row .contact-form-group {
+            margin-bottom: 0;
+          }
+
+          @media (max-width: 768px) {
+            .contact-form-row {
+              grid-template-columns: 1fr;
+              gap: 0;
+            }
+
+            
+          }
+
           .contact-form-label {
             display: block;
             font-family: "Science Gothic", sans-serif;
@@ -619,43 +828,45 @@ export function ContactSection() {
                     <svg className="w-16 h-16 mx-auto text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
-                  </div>
+          </div>
                   <h3 className="contact-heading mb-4">Thank You!</h3>
                   <p className="contact-description">
                     Your message has been sent successfully. I'll get back to you as soon as possible.
-                  </p>
-                </div>
+          </p>
+        </div>
               ) : (
                 <form onSubmit={handleSubmit}>
-                  <div className="contact-form-group">
-                    <label htmlFor="name" className="contact-form-label">
-                  Name
-                </label>
-                    <input
-                  id="name"
+                  <div className="contact-form-row">
+                    <div className="contact-form-group">
+                      <label htmlFor="name" className="contact-form-label">
+                Name
+              </label>
+                      <input
+                id="name"
                       type="text"
-                  placeholder="Your name"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                placeholder="Your name"
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       className="contact-form-input"
-                  required
-                />
-              </div>
+                required
+              />
+                    </div>
 
-                  <div className="contact-form-group">
-                    <label htmlFor="email" className="contact-form-label">
-                  Email
-                </label>
-                    <input
-                  id="email"
-                  type="email"
-                  placeholder="your@email.com"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    <div className="contact-form-group">
+                      <label htmlFor="email" className="contact-form-label">
+                Email
+              </label>
+                      <input
+                id="email"
+                type="email"
+                placeholder="your@email.com"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className="contact-form-input"
-                  required
-                />
-              </div>
+                required
+              />
+                    </div>
+                  </div>
 
                   <div className="contact-form-group">
                     <label htmlFor="message" className="contact-form-label">
@@ -678,7 +889,7 @@ export function ContactSection() {
                   >
                     {isSubmitting ? "Sending..." : "Send Message"}
                   </button>
-            </form>
+          </form>
               )}
 
               {/* Social Links */}
@@ -691,12 +902,12 @@ export function ContactSection() {
                   <p className="text-center text-white/70 mb-6" style={{ fontFamily: "'Science Gothic', sans-serif", fontWeight: 300, fontSize: '14px' }}>OR</p>
                 )}
                   <div className="flex justify-center gap-4">
-                  {socialLinks.map((social) => (
-                    <a
-                      key={social.label}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
+              {socialLinks.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                       className="flex flex-col items-center gap-2 p-4 rounded-lg transition-all duration-300 hover:transform hover:scale-110 flex-1 max-w-[120px]"                      style={{
                         background: 'linear-gradient(235deg, hsl(var(--contact-hue1) 50% 10% / 0.3), hsl(var(--contact-hue1) 50% 10% / 0) 25%), linear-gradient(45deg, hsl(var(--contact-hue2) 50% 10% / 0.3), hsl(var(--contact-hue2) 50% 10% / 0) 25%), linear-gradient(hsl(220deg 25% 0% / 0.2))',
                         backdropFilter: 'blur(10px)',
@@ -706,15 +917,15 @@ export function ContactSection() {
                     >
                       <social.icon className="contact-social-icon" style={{ width: '1.25rem', height: '1.25rem', flexShrink: 0 }} />
                       <span className="contact-social-label" style={{ fontSize: '14px' }}>{social.label}</span>
-                    </a>
-                  ))}
+                </a>
+              ))}
                 </div>
                 {!isSubmitted && (
                   <p className="text-center text-white/60 mt-6" style={{ fontFamily: "'Science Gothic', sans-serif", fontWeight: 300, fontSize: '13px', lineHeight: '1.6' }}>
                     Open for new projects or collaborations.
                   </p>
                 )}
-              </div>
+            </div>
           </div>
         </div>
       </div>

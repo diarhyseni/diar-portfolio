@@ -90,7 +90,7 @@ export function ExperienceSection() {
             min-height: 100vh;
             display: flex;
             align-items: center;
-            padding: 2rem 1rem;
+            padding: 0;
             scroll-snap-align: start;
             background: #000;
            background-image: url(https://i.ibb.co/PvXj31RZ/pexels-marek-piwnicki-3907296-9202300.jpg), linear-gradient(to right in oklab, hsl(var(--exp-hue2) 50% 70%), hsl(var(--exp-hue1) 50% 70%));
@@ -124,40 +124,105 @@ export function ExperienceSection() {
           @media (max-width: 1500px) {
             #experience {
               min-height: 100vh;
-              padding: 1rem;
+              padding: 0;
             }
 
             .exp-card {
-              padding: 1.5rem;
-              transform: scale(0.9);
-              transform-origin: center;
+              padding: 1.35rem; /* 1.5rem * 0.9 = 10% reduction */
             }
 
             .exp-grid {
-              gap: 0.5rem;
+              gap: 0.675rem; /* 0.75rem * 0.9 = 10% reduction */
             }
 
             .exp-section-title {
-              font-size: 16px;
-              margin-bottom: 1rem;
+              font-size: 16.2px; /* 18px * 0.9 = 10% reduction */
+              margin-bottom: 1.35rem; /* 1.5rem * 0.9 = 10% reduction */
             }
 
             .exp-item {
-              margin-bottom: 0.75rem !important;
-              padding-bottom: 0.75rem !important;
+              margin-bottom: 0.9rem !important; /* 1rem * 0.9 = 10% reduction */
+              padding-bottom: 0.9rem !important; /* 1rem * 0.9 = 10% reduction */
+            }
+
+            .exp-period {
+              font-size: 12.6px; /* 14px * 0.9 = 10% reduction */
+              margin-bottom: 0.45rem; /* 0.5rem * 0.9 = 10% reduction */
             }
 
             .exp-company {
-              font-size: 18px;
+              font-size: 18px; /* 20px * 0.9 = 10% reduction */
+              margin-bottom: 0.225rem; /* 0.25rem * 0.9 = 10% reduction */
             }
 
             .exp-position {
-              font-size: 14px;
+              font-size: 14.4px; /* 16px * 0.9 = 10% reduction */
+              margin-bottom: 0.225rem; /* 0.25rem * 0.9 = 10% reduction */
             }
 
-            .exp-period,
             .exp-location {
-              font-size: 12px;
+              font-size: 12.6px; /* 14px * 0.9 = 10% reduction */
+            }
+          }
+
+          /* Tablet specific styles (iPad) */
+          @media (min-width: 768px) and (max-width: 1024px) {
+            #experience {
+              padding: 0;
+              min-height: 100vh;
+              height: 100vh;
+              display: flex;
+              align-items: center;
+            }
+
+            #experience > div {
+              max-width: 56rem;
+              width: 36rem;
+            }
+
+            .exp-card {
+              padding: 1.425rem; /* 1.5rem * 0.95 = 5% reduction */
+            }
+
+            .exp-grid {
+              grid-template-columns: 1fr !important;
+              gap: 1rem;
+            }
+
+            .exp-grid > div {
+              width: 100%;
+              max-width: 100%;
+              margin-left: 0;
+              margin-right: 0;
+            }
+
+            .exp-section-title {
+              font-size: 17.1px; /* 18px * 0.95 = 5% reduction */
+              margin-bottom: 1.425rem; /* 1.5rem * 0.95 = 5% reduction */
+            }
+
+            .exp-item {
+              margin-bottom: 0.95rem !important; /* 1rem * 0.95 = 5% reduction */
+              padding-bottom: 0.95rem !important; /* 1rem * 0.95 = 5% reduction */
+            }
+
+            .exp-period {
+              font-size: 13.3px; /* 14px * 0.95 = 5% reduction */
+              margin-bottom: 0.475rem; /* 0.5rem * 0.95 = 5% reduction */
+            }
+
+            .exp-company {
+              font-size: 19px; /* 20px * 0.95 = 5% reduction */
+              margin-bottom: 0.2375rem; /* 0.25rem * 0.95 = 5% reduction */
+            }
+
+            .exp-position {
+              font-size: 15.2px; /* 16px * 0.95 = 5% reduction */
+              margin-bottom: 0.2375rem; /* 0.25rem * 0.95 = 5% reduction */
+            }
+
+            .exp-location {
+              font-size: 13.3px; /* 14px * 0.95 = 5% reduction */
             }
           }
 
@@ -414,13 +479,16 @@ export function ExperienceSection() {
 
           @media (max-width: 1366px) {
             .exp-card {
-              transform: scale(0.8);
-              transform-origin: center;
+              padding: 1.2rem; /* 1.5rem * 0.8 = 20% reduction */
+            }
+
+            #experience > div {
+              max-width: 56rem; /* max-w-4xl = 56rem (replacing max-w-6xl = 72rem) */
             }
 
             .exp-grid {
               grid-template-columns: 1fr 1fr;
-              gap: 0.75rem;
+              gap: 0.6rem; /* 0.75rem * 0.8 = 20% reduction */
             }
 
             .exp-grid > div {
@@ -429,19 +497,48 @@ export function ExperienceSection() {
               margin-left: 0;
               margin-right: 0;
             }
+
+            .exp-section-title {
+              font-size: 14.4px; /* 18px * 0.8 = 20% reduction */
+              margin-bottom: 1.2rem; /* 1.5rem * 0.8 = 20% reduction */
+            }
+
+            .exp-item {
+              margin-bottom: 0.8rem !important; /* 1rem * 0.8 = 20% reduction */
+              padding-bottom: 0.8rem !important; /* 1rem * 0.8 = 20% reduction */
+            }
+
+            .exp-period {
+              font-size: 11.2px; /* 14px * 0.8 = 20% reduction */
+              margin-bottom: 0.4rem; /* 0.5rem * 0.8 = 20% reduction */
+            }
+
+            .exp-company {
+              font-size: 16px; /* 20px * 0.8 = 20% reduction */
+              margin-bottom: 0.2rem; /* 0.25rem * 0.8 = 20% reduction */
+            }
+
+            .exp-position {
+              font-size: 12.8px; /* 16px * 0.8 = 20% reduction */
+              margin-bottom: 0.2rem; /* 0.25rem * 0.8 = 20% reduction */
+            }
+
+            .exp-location {
+              font-size: 11.2px; /* 14px * 0.8 = 20% reduction */
+            }
           }
 
           @media (max-width: 1024px) {
             .exp-grid > div {
-              width: 75%;
-              max-width: 75%;
+              width: 100%;
+              max-width: 100%;
             }
           }
 
           @media (max-width: 768px) {
             .exp-grid {
               grid-template-columns: 1fr;
-              gap: 1rem;
+              gap: 0;
             }
 
             .exp-grid > div {
@@ -451,7 +548,7 @@ export function ExperienceSection() {
           }
         `
       }} />
-      <section id="experience" aria-label="Experience and Education" className="px-4" ref={sectionRef}>
+      <section id="experience" aria-label="Experience and Education" ref={sectionRef}>
         <div className="max-w-6xl mx-auto w-full">
           {loading ? (
             <div className="text-center text-white/60 py-20">Loading...</div>

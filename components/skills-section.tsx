@@ -100,6 +100,23 @@ export function SkillsSection() {
             }
           }
 
+          @media (min-width: 768px) and (max-width: 1024px) {
+            #skills {
+              padding: 0;
+              height: 100vh;
+              display: flex;
+              align-items: center;
+            }
+
+            #skills > div:first-child {
+              max-width: 48rem; /* max-w-3xl = 48rem (replacing max-w-6xl = 72rem) */
+            }
+
+            .skills-grid {
+              grid-template-columns: repeat(4, 1fr) !important;
+            }
+          }
+
           @media (max-width: 768px) {
             #skills {
               height: auto;
@@ -137,43 +154,84 @@ export function SkillsSection() {
             }
           }
 
+          @media (max-width: 1366px) {
+            #skills {
+              padding: 1rem 0.4rem; /* 1.25rem 0.5rem * 0.8 = 20% reduction from 1500px */
+            }
+
+            .skills-card {
+              padding: 1.28rem; /* 1.6rem * 0.8 = 20% reduction from 1500px */
+            }
+
+            .skills-section-title {
+              font-size: 11.52px; /* 14.4px * 0.8 = 20% reduction from 1500px */
+              margin-bottom: 0.96rem; /* 1.2rem * 0.8 = 20% reduction from 1500px */
+            }
+
+            .skills-filters {
+              margin-bottom: 1.28rem; /* 1.6rem * 0.8 = 20% reduction from 1500px */
+              gap: 0.48rem; /* 0.6rem * 0.8 = 20% reduction from 1500px */
+            }
+
+            .skills-grid {
+              grid-template-columns: repeat(6, 1fr);
+              gap: 0.64rem; /* 0.8rem * 0.8 = 20% reduction from 1500px */
+            }
+
+            .skill-item {
+              padding: 0.64rem 0.48rem !important; /* 0.8rem 0.6rem * 0.8 = 20% reduction from 1500px */
+              gap: 0.48rem; /* 0.6rem * 0.8 = 20% reduction from 1500px */
+            }
+
+            .skill-icon {
+              font-size: 1.6rem; /* 2rem * 0.8 = 20% reduction from 1500px */
+            }
+
+            .skill-name {
+              font-size: 8.96px; /* 11.2px * 0.8 = 20% reduction from 1500px */
+            }
+
+            .skills-filter-btn {
+              padding: 6.4px 16px; /* 8px 20px * 0.8 = 20% reduction */
+              font-size: 11.2px; /* 14px * 0.8 = 20% reduction */
+            }
+          }
+
           @media (max-width: 1500px) {
             #skills {
               padding: 1.25rem 0.5rem;
             }
 
             .skills-card {
-              padding: 2rem;
-              transform: scale(0.8);
-              transform-origin: center;
+              padding: 1.6rem; /* 2rem * 0.8 = 20% reduction */
             }
 
             .skills-section-title {
-              font-size: 16px;
-              margin-bottom: 0.75rem;
+              font-size: 14.4px; /* 18px * 0.8 = 20% reduction */
+              margin-bottom: 1.2rem; /* 1.5rem * 0.8 = 20% reduction */
             }
 
             .skills-filters {
-              margin-bottom: 1rem;
-              gap: 0.5rem;
+              margin-bottom: 1.6rem; /* 2rem * 0.8 = 20% reduction */
+              gap: 0.6rem; /* 0.75rem * 0.8 = 20% reduction */
             }
 
             .skills-grid {
               grid-template-columns: repeat(6, 1fr);
-              gap: 0.375rem;
+              gap: 0.8rem; /* 1rem * 0.8 = 20% reduction */
             }
 
             .skill-item {
-              padding: 0.5rem 0.375rem !important;
-              gap: 0.375rem;
+              padding: 0.8rem 0.6rem !important; /* 1rem 0.75rem * 0.8 = 20% reduction */
+              gap: 0.6rem; /* 0.75rem * 0.8 = 20% reduction */
             }
 
             .skill-icon {
-              font-size: 2rem;
+              font-size: 2rem; /* 2.5rem * 0.8 = 20% reduction */
             }
 
             .skill-name {
-              font-size: 12px;
+              font-size: 11.2px; /* 14px * 0.8 = 20% reduction */
             }
           }
 
