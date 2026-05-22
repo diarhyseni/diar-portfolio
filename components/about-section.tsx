@@ -79,7 +79,17 @@ export function AboutSection() {
             }
           }
 
-          @media (max-width: 1200px) {
+          @media (max-width: 768px) {
+            #about {
+              height: auto;
+              min-height: 100vh;
+              padding: 3rem 0;
+              display: flex;
+              align-items: center;
+            }
+          }
+
+          @media (min-width: 769px) and (max-width: 1200px) {
             #about {
               height: auto;
               min-height: auto;
@@ -239,9 +249,78 @@ export function AboutSection() {
           @media (max-width: 767px) {
             .about-card {
               padding: 12px !important;
+              box-sizing: border-box;
             }
             .about-text-card.about-card {
               padding: 20px !important;
+              box-sizing: border-box;
+            }
+            
+            .about-card .shine,
+            .about-text-card .shine {
+              mask-clip: border-box !important;
+            }
+            
+            .about-card .shine-top,
+            .about-text-card .shine-top {
+              right: 0;
+              top: 0;
+              left: 0;
+              width: 100%;
+            }
+            
+            .about-card .shine-bottom,
+            .about-text-card .shine-bottom {
+              bottom: 0;
+              left: 0;
+              right: 0;
+              width: 100%;
+            }
+            
+            .about-card .shine::before,
+            .about-text-card .shine::before {
+              inset: -1px !important;
+            }
+            
+            .about-card .shine::after,
+            .about-text-card .shine::after {
+              inset: -1px !important;
+            }
+            
+            .about-card .glow-top,
+            .about-text-card .glow-top {
+              left: 0;
+              right: 0;
+              top: -1px;
+              width: 100%;
+              height: 50%;
+            }
+            
+            .about-card .glow-bottom,
+            .about-text-card .glow-bottom {
+              bottom: 0;
+              left: 0;
+              right: 0;
+              width: 100%;
+              height: 50%;
+            }
+            
+            .about-card .glow-bright.glow-top,
+            .about-text-card .glow-bright.glow-top {
+              left: 0;
+              right: 0;
+              top: -7px;
+              width: 100%;
+              height: calc(50% + 7px);
+            }
+            
+            .about-card .glow-bright.glow-bottom,
+            .about-text-card .glow-bright.glow-bottom {
+              bottom: 0;
+              left: 0;
+              right: 0;
+              width: 100%;
+              height: calc(50% + 7px);
             }
           }
 
@@ -271,9 +350,9 @@ export function AboutSection() {
           }
           
           .about-card .shine-top {
-            right: calc(var(--about-border) * -1);
-            top: calc(var(--about-border) * -1);
-            left: calc(var(--about-border) * -1);
+            right: 0;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 50%;
             --hue: var(--about-hue1);
@@ -281,9 +360,9 @@ export function AboutSection() {
           }
           
           .about-card .shine-bottom {
-            bottom: calc(var(--about-border) * -1);
-            left: calc(var(--about-border) * -1);
-            right: calc(var(--about-border) * -1);
+            bottom: 0;
+            left: 0;
+            right: 0;
             top: auto;
             width: 100%;
             height: 50%;
@@ -522,9 +601,9 @@ export function AboutSection() {
           }
           
           .about-text-card .shine-top {
-            right: calc(var(--about-border) * -1);
-            top: calc(var(--about-border) * -1);
-            left: calc(var(--about-border) * -1);
+            right: 0;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 50%;
             --hue: var(--about-hue1);
@@ -532,9 +611,9 @@ export function AboutSection() {
           }
           
           .about-text-card .shine-bottom {
-            bottom: calc(var(--about-border) * -1);
-            left: calc(var(--about-border) * -1);
-            right: calc(var(--about-border) * -1);
+            bottom: 0;
+            left: 0;
+            right: 0;
             top: auto;
             width: 100%;
             height: 50%;
@@ -912,7 +991,7 @@ export function AboutSection() {
           }
         `
       }} />
-      <section id="about" aria-label="About" className="px-4">
+      <section id="about" aria-label="About">
         <div className="max-w-5xl mx-auto w-full">
         <div className="grid md:grid-cols-2 gap-8 items-center about-grid">
           {/* Left side - Text content */}

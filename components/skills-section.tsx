@@ -88,13 +88,13 @@ export function SkillsSection() {
             overflow: hidden;
           }
 
-          @media (max-width: 1600px) {
+          @media (min-width: 769px) and (max-width: 1600px) {
             #skills {
               padding: 1.5rem 0.75rem;
             }
           }
 
-          @media (max-width: 1500px) {
+          @media (min-width: 769px) and (max-width: 1500px) {
             #skills {
               padding: 1.25rem 0.5rem;
             }
@@ -121,8 +121,72 @@ export function SkillsSection() {
             #skills {
               height: auto;
               min-height: 100vh;
-              padding: 2rem 1rem;
+              padding: 3rem 0;
               overflow: visible;
+              display: flex;
+              align-items: center;
+            }
+            
+            .skills-card {
+              box-sizing: border-box;
+            }
+            
+            .skills-card .shine {
+              mask-clip: border-box !important;
+            }
+            
+            .skills-card .shine-top {
+              right: 0;
+              top: 0;
+              left: 0;
+              width: 100%;
+            }
+            
+            .skills-card .shine-bottom {
+              bottom: 0;
+              left: 0;
+              right: 0;
+              width: 100%;
+            }
+            
+            .skills-card .shine::before {
+              inset: -1px !important;
+            }
+            
+            .skills-card .shine::after {
+              inset: -1px !important;
+            }
+            
+            .skills-card .glow-top {
+              left: 0;
+              right: 0;
+              top: 0;
+              width: 100%;
+              height: 50%;
+            }
+            
+            .skills-card .glow-bottom {
+              bottom: 0;
+              left: 0;
+              right: 0;
+              width: 100%;
+              height: 50%;
+            }
+            
+            .skills-card .glow-bright.glow-top {
+              left: 0;
+              right: 0;
+              top: 0;
+              width: 100%;
+              height: calc(50% + 7px);
+            }
+            
+            .skills-card .glow-bright.glow-bottom {
+              bottom: 0;
+              left: 0;
+              right: 0;
+              width: 100%;
+              height: calc(50% + 7px);
             }
           }
 
@@ -154,7 +218,7 @@ export function SkillsSection() {
             }
           }
 
-          @media (max-width: 1366px) {
+          @media (min-width: 769px) and (max-width: 1366px) {
             #skills {
               padding: 1rem 0.4rem; /* 1.25rem 0.5rem * 0.8 = 20% reduction from 1500px */
             }
@@ -197,11 +261,7 @@ export function SkillsSection() {
             }
           }
 
-          @media (max-width: 1500px) {
-            #skills {
-              padding: 1.25rem 0.5rem;
-            }
-
+          @media (min-width: 769px) and (max-width: 1500px) {
             .skills-card {
               padding: 1.6rem; /* 2rem * 0.8 = 20% reduction */
             }
@@ -261,9 +321,9 @@ export function SkillsSection() {
           }
           
           .skills-card .shine-top {
-            right: calc(var(--skills-border) * -1);
-            top: calc(var(--skills-border) * -1);
-            left: calc(var(--skills-border) * -1);
+            right: 0;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 50%;
             --hue: var(--skills-hue1);
@@ -271,9 +331,9 @@ export function SkillsSection() {
           }
           
           .skills-card .shine-bottom {
-            bottom: calc(var(--skills-border) * -1);
-            left: calc(var(--skills-border) * -1);
-            right: calc(var(--skills-border) * -1);
+            bottom: 0;
+            left: 0;
+            right: 0;
             top: auto;
             width: 100%;
             height: 50%;
@@ -599,6 +659,26 @@ export function SkillsSection() {
 
             .skill-name {
               font-size: 11px;
+            }
+          }
+
+          /* Mobile spacing must match experience (3rem vertical, 1rem horizontal on inner wrapper) */
+          @media (max-width: 768px) {
+            #skills {
+              min-height: 100vh;
+              height: auto;
+              padding: 3rem 0 !important;
+              overflow: visible;
+              display: flex;
+              align-items: center;
+            }
+
+            #skills > div {
+              padding-left: 1rem !important;
+              padding-right: 1rem !important;
+              width: 100%;
+              max-width: 100%;
+              box-sizing: border-box;
             }
           }
         `

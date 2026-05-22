@@ -235,7 +235,81 @@ export function ContactSection() {
             }
           }
 
-          @media (max-width: 1500px) {
+          @media (max-width: 768px) {
+            #contact {
+              height: auto;
+              min-height: 100vh;
+              max-height: none;
+              overflow: visible;
+              padding: 3rem 0;
+              display: flex;
+              align-items: center;
+            }
+            
+            .contact-card {
+              box-sizing: border-box;
+            }
+            
+            .contact-card .shine {
+              mask-clip: border-box !important;
+            }
+            
+            .contact-card .shine-top {
+              right: 0;
+              top: 0;
+              left: 0;
+              width: 100%;
+            }
+            
+            .contact-card .shine-bottom {
+              bottom: 0;
+              left: 0;
+              right: 0;
+              width: 100%;
+            }
+            
+            .contact-card .shine::before {
+              inset: -1px !important;
+            }
+            
+            .contact-card .shine::after {
+              inset: -1px !important;
+            }
+            
+            .contact-card .glow-top {
+              left: 0;
+              right: 0;
+              top: 0;
+              width: 100%;
+              height: 50%;
+            }
+            
+            .contact-card .glow-bottom {
+              bottom: 0;
+              left: 0;
+              right: 0;
+              width: 100%;
+              height: 50%;
+            }
+            
+            .contact-card .glow-bright.glow-top {
+              left: 0;
+              right: 0;
+              top: 0;
+              width: 100%;
+              height: calc(50% + 7px);
+            }
+            
+            .contact-card .glow-bright.glow-bottom {
+              bottom: 0;
+              left: 0;
+              right: 0;
+              width: 100%;
+              height: calc(50% + 7px);
+            }
+          }
+
+          @media (min-width: 769px) and (max-width: 1500px) {
             #contact {
               min-height: 100vh;
               height: 100vh;
@@ -428,9 +502,9 @@ export function ContactSection() {
           }
           
           .contact-card .shine-top {
-            right: calc(var(--contact-border) * -1);
-            top: calc(var(--contact-border) * -1);
-            left: calc(var(--contact-border) * -1);
+            right: 0;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 50%;
             --hue: var(--contact-hue1);
@@ -438,9 +512,9 @@ export function ContactSection() {
           }
           
           .contact-card .shine-bottom {
-            bottom: calc(var(--contact-border) * -1);
-            left: calc(var(--contact-border) * -1);
-            right: calc(var(--contact-border) * -1);
+            bottom: 0;
+            left: 0;
+            right: 0;
             top: auto;
             width: 100%;
             height: 50%;

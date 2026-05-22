@@ -156,7 +156,7 @@ export function ProjectsSection() {
             }
           }
 
-          @media (max-width: 1024px) {
+          @media (min-width: 769px) and (max-width: 1024px) {
             #projects {
               padding: 2rem 2rem;
             }
@@ -164,7 +164,11 @@ export function ProjectsSection() {
 
           @media (max-width: 768px) {
             #projects {
-              padding: 2rem 1rem;
+              height: auto;
+              min-height: 100vh;
+              padding: 3rem 0;
+              display: flex;
+              align-items: center;
             }
           }
 
@@ -343,18 +347,32 @@ export function ProjectsSection() {
           .gallery-container {
             position: relative;
             width: 100%;
-            height: 90vh;
+            height: auto;
             overflow: hidden;
-            background: rgba(0, 0, 0, 0.3);
+            background: #000;
             margin: 0;
             padding: 0;
+            display: flex;
+            flex-direction: column;
+          }
+
+          .gallery-media {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            flex: none;
+            overflow: hidden;
+            background: #000;
           }
 
           .gallery-image {
+            position: absolute;
+            inset: 0;
             width: 100%;
             height: 100%;
-            object-fit: contain;
-            background: rgba(0, 0, 0, 0.5);
+            object-fit: cover;
+            object-position: center center;
+            background: #000;
             display: block;
             margin: 0;
             padding: 0;
@@ -364,8 +382,9 @@ export function ProjectsSection() {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: transparent;
-            border: none;
+            background: rgba(0, 0, 0, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 50%;
             color: white;
             display: flex;
             align-items: center;
@@ -373,18 +392,45 @@ export function ProjectsSection() {
             cursor: pointer;
             transition: all 0.3s ease;
             z-index: 20;
-            padding: 0;
+            padding: 0.35rem;
+            box-shadow:
+              0 0 2px hsl(var(--projects-hue1), 90%, 55%, 0.85),
+              0 0 2px hsl(145, 85%, 48%, 0.55),
+              0 1px 3px rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
           }
 
           .gallery-nav:hover {
-            transform: translateY(-50%) scale(1.2);
-            opacity: 0.8;
+            transform: translateY(-50%) scale(1.12);
+            opacity: 1;
+            box-shadow:
+              0 0 18px hsl(var(--projects-hue1), 95%, 62%, 0.95),
+              0 0 28px hsl(145, 90%, 52%, 0.75),
+              0 6px 16px rgba(0, 0, 0, 0.85);
           }
 
           .gallery-nav svg {
             width: 3rem;
             height: 3rem;
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+            filter:
+              drop-shadow(0 0 6px hsl(var(--projects-hue1), 95%, 65%))
+              drop-shadow(0 0 14px hsl(var(--projects-hue1), 90%, 50%))
+              drop-shadow(0 2px 6px rgba(0, 0, 0, 0.9));
+          }
+
+          .gallery-nav.prev svg {
+            filter:
+              drop-shadow(0 0 8px hsl(var(--projects-hue1), 100%, 68%))
+              drop-shadow(0 0 18px hsl(var(--projects-hue1), 95%, 52%))
+              drop-shadow(0 2px 8px rgba(0, 0, 0, 0.9));
+          }
+
+          .gallery-nav.next svg {
+            filter:
+              drop-shadow(0 0 8px hsl(145, 95%, 58%))
+              drop-shadow(0 0 18px hsl(145, 90%, 45%))
+              drop-shadow(0 2px 8px rgba(0, 0, 0, 0.9));
           }
 
           .gallery-nav.prev {
@@ -396,20 +442,21 @@ export function ProjectsSection() {
           }
 
           .gallery-gradient-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0) 100%);
-            padding: 6rem 2rem 2rem;
-            min-height: 200px;
+            position: relative;
+            flex-shrink: 0;
+            background: rgba(0, 0, 0, 0.95);
+            padding: 1.25rem 1.5rem 1.5rem;
             z-index: 15;
           }
 
           .modal-content-wrapper {
-            max-height: 90vh;
-            overflow: hidden;
+            height: auto;
+            max-height: calc(100dvh - 2rem);
+            overflow-x: hidden;
+            overflow-y: auto;
             padding: 0;
+            display: flex;
+            flex-direction: column;
           }
 
           .modal-content-wrapper::-webkit-scrollbar {
@@ -429,14 +476,23 @@ export function ProjectsSection() {
             background: rgba(255, 255, 255, 0.3);
           }
 
-          /* Override Dialog default max-width to make it wider */
-          [data-slot="dialog-content"] {
-            max-width: 90vw !important;
-            width: 85vw !important;
+          /* Centered popup: content height only (16:9 image + overlay), equal side margins */
+          .project-detail-dialog[data-slot="dialog-content"] {
+            position: fixed !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
+            translate: none !important;
+            width: calc(100vw - 2rem) !important;
+            max-width: min(56rem, calc(100vw - 2rem)) !important;
+            height: auto !important;
+            max-height: calc(100dvh - 2rem) !important;
             padding: 0 !important;
             margin: 0 !important;
             gap: 0 !important;
             border-radius: 12px !important;
+            overflow: hidden !important;
+            display: block !important;
           }
 
           /* Make close button larger */
@@ -481,40 +537,58 @@ export function ProjectsSection() {
           }
 
           @media (max-width: 768px) {
-            [data-slot="dialog-content"] {
-              max-width: 90vw !important;
-              width: 90vw !important;
+            .project-detail-dialog .gallery-gradient-overlay {
+              padding: 1rem 1rem max(1rem, env(safe-area-inset-bottom));
             }
 
-            .gallery-container {
-              height: 90vh;
+            .project-detail-dialog .gallery-gradient-overlay [data-slot="dialog-title"] {
+              font-size: 1.25rem !important;
             }
 
-            .gallery-nav svg {
+            .project-detail-dialog .gallery-gradient-overlay .flex.items-center.justify-between {
+              flex-direction: column;
+              align-items: flex-start;
+              gap: 0.75rem;
+            }
+
+            .project-detail-dialog .gallery-nav svg {
               width: 2rem;
               height: 2rem;
             }
 
-            .gallery-nav.prev {
-              left: 0.75rem;
+            .project-detail-dialog .gallery-nav.prev {
+              left: 0.5rem;
             }
 
-            .gallery-nav.next {
-              right: 0.75rem;
+            .project-detail-dialog .gallery-nav.next {
+              right: 0.5rem;
+            }
+          }
+
+          /* Mobile padding must match about/experience/skills/contact */
+          @media (max-width: 768px) {
+            #projects {
+              min-height: 100vh;
+              height: auto;
+              padding: 3rem 0 !important;
+              margin-left: 0 !important;
+              margin-right: 0 !important;
+              display: flex;
+              align-items: center;
             }
 
-            .gallery-gradient-overlay {
-              padding: 2rem 1.5rem 1.5rem;
-            }
-
-            .gallery-gradient-overlay h2 {
-              font-size: 1.5rem;
+            #projects > div {
+              padding-left: 1rem !important;
+              padding-right: 1rem !important;
+              width: 100%;
+              max-width: 100%;
+              box-sizing: border-box;
             }
           }
         `
       }} />
       <section id="projects" aria-label="Projects">
-        <div className=" mx-auto w-full py-3">
+        <div className="max-w-6xl mx-auto w-full py-3">
         <div className="text-center mb-4 space-y-4">
             <p className="projects-section-title">Selected Projects</p>
             <p className="text-lg text-white/70 max-w-2xl mx-auto leading-relaxed" style={{ fontFamily: "'Science Gothic', sans-serif", fontWeight: 300 }}>
@@ -606,41 +680,41 @@ export function ProjectsSection() {
         {/* Project Detail Modal */}
         {selectedProject && (
           <Dialog open={!!selectedProject} onOpenChange={closeProject}>
-            <DialogContent className="!max-w-[90vw] !w-[85vw] max-h-[90vh] bg-black border-white/10 text-white p-0 overflow-hidden">
+            <DialogContent className="project-detail-dialog bg-black border-white/10 text-white p-0">
               <div className="modal-content-wrapper">
-                {/* Gallery Section with Gradient Overlay */}
                 <div className="gallery-container">
-                  <img
-                    src={selectedProject.gallery[currentImageIndex]}
-                    alt={`${selectedProject.title} - Image ${currentImageIndex + 1}`}
-                    className="gallery-image"
-                  />
-                  {selectedProject.gallery.length > 1 && (
-                    <>
-                      <button
-                        className="gallery-nav prev"
-                        onClick={(e) => {
-                          e.stopPropagation()
-                          prevImage()
-                        }}
-                        aria-label="Previous image"
-                      >
-                        <ChevronLeft />
-                      </button>
-                      <button
-                        className="gallery-nav next"
-                        onClick={(e) => {
-                          e.stopPropagation()
-                          nextImage()
-                        }}
-                        aria-label="Next image"
-                      >
-                        <ChevronRight />
-                      </button>
-                    </>
-                  )}
-                  
-                  {/* Gradient Overlay with Content */}
+                  <div className="gallery-media">
+                    <img
+                      src={selectedProject.gallery[currentImageIndex]}
+                      alt={`${selectedProject.title} - Image ${currentImageIndex + 1}`}
+                      className="gallery-image"
+                    />
+                    {selectedProject.gallery.length > 1 && (
+                      <>
+                        <button
+                          className="gallery-nav prev"
+                          onClick={(e) => {
+                            e.stopPropagation()
+                            prevImage()
+                          }}
+                          aria-label="Previous image"
+                        >
+                          <ChevronLeft />
+                        </button>
+                        <button
+                          className="gallery-nav next"
+                          onClick={(e) => {
+                            e.stopPropagation()
+                            nextImage()
+                          }}
+                          aria-label="Next image"
+                        >
+                          <ChevronRight />
+                        </button>
+                      </>
+                    )}
+                  </div>
+
                   <div className="gallery-gradient-overlay">
                     <DialogHeader className="text-left">
                       <DialogTitle className="text-2xl font-bold text-white mb-2" style={{ fontFamily: "'Science Gothic', sans-serif", fontWeight: 400 }}>
@@ -698,8 +772,8 @@ export function ProjectsSection() {
                       </div>
                     </div>
                   </div>
-        </div>
-      </div>
+                </div>
+              </div>
             </DialogContent>
           </Dialog>
         )}

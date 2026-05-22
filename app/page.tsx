@@ -31,18 +31,36 @@ export default function Page() {
           }
           
           @media (max-width: 768px) {
-            * {
-              max-width: 100%;
-            }
-            
-            section, #home, #about, #experience, #skills, #projects, #contact {
+            #home,
+            #about,
+            #experience,
+            #skills,
+            #projects,
+            #contact {
+              min-height: 100vh !important;
+              height: auto !important;
+              max-height: none !important;
               max-width: 100vw !important;
               overflow-x: hidden !important;
+              overflow-y: visible !important;
+              box-sizing: border-box;
+            }
+
+            #about > div,
+            #experience > div,
+            #skills > div,
+            #projects > div,
+            #contact > div {
+              padding-left: 1rem !important;
+              padding-right: 1rem !important;
+              width: 100%;
+              max-width: 100%;
+              box-sizing: border-box;
             }
           }
 
-          /* Add large gaps between sections on tablet and mobile */
-          @media (max-width: 1499px) {
+          /* Add large gaps between sections on tablet only */
+          @media (min-width: 768px) and (max-width: 1499px) {
             #home,
             #about,
             #experience,
@@ -52,6 +70,18 @@ export default function Page() {
               margin-bottom: 25vh;
             }
 
+            #contact {
+              margin-bottom: 0;
+            }
+          }
+
+          /* Remove spacing on mobile */
+          @media (max-width: 767px) {
+            #home,
+            #about,
+            #experience,
+            #skills,
+            #projects,
             #contact {
               margin-bottom: 0;
             }

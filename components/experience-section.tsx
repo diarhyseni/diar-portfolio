@@ -191,7 +191,7 @@ export function ExperienceSection() {
 
             .exp-grid > div {
               width: 100%;
-              max-width: 100%;
+            
               margin-left: 0;
               margin-right: 0;
             }
@@ -252,9 +252,9 @@ export function ExperienceSection() {
           }
           
           .exp-card .shine-top {
-            right: calc(var(--exp-border) * -1);
-            top: calc(var(--exp-border) * -1);
-            left: calc(var(--exp-border) * -1);
+            right: 0;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 50%;
             --hue: var(--exp-hue1);
@@ -262,9 +262,9 @@ export function ExperienceSection() {
           }
           
           .exp-card .shine-bottom {
-            bottom: calc(var(--exp-border) * -1);
-            left: calc(var(--exp-border) * -1);
-            right: calc(var(--exp-border) * -1);
+            bottom: 0;
+            left: 0;
+            right: 0;
             top: auto;
             width: 100%;
             height: 50%;
@@ -536,14 +536,101 @@ export function ExperienceSection() {
           }
 
           @media (max-width: 768px) {
+            #experience {
+              height: auto;
+              min-height: 100vh;
+              padding: 3rem 0;
+              overflow: visible;
+              display: flex;
+              align-items: center;
+            }
+
+            #experience > div {
+              padding-left: 1rem;
+              padding-right: 1rem;
+              width: 100%;
+              max-width: 100%;
+              box-sizing: border-box;
+            }
+            
             .exp-grid {
               grid-template-columns: 1fr;
-              gap: 0;
+              gap: 1.5rem;
             }
 
             .exp-grid > div {
               width: 100%;
               max-width: 100%;
+            }
+          }
+
+          /* Match about/skills: mobile glow uses same calc border positioning as desktop */
+          @media (max-width: 767px) {
+            .exp-card {
+              padding: 1.5rem !important;
+              box-sizing: border-box;
+            }
+
+            .exp-card .shine {
+              mask-clip: border-box !important;
+            }
+
+            .exp-card .shine-top {
+              right: 0;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 50%;
+            }
+
+            .exp-card .shine-bottom {
+              bottom: 0;
+              left: 0;
+              right: 0;
+              top: auto;
+              width: 100%;
+              height: 50%;
+            }
+
+            .exp-card .shine::before,
+            .exp-card .shine::after {
+              inset: -1px !important;
+            }
+
+            .exp-card .glow-top {
+              left: calc(var(--exp-radius) * -2);
+              right: calc(var(--exp-radius) * -2);
+              top: calc(var(--exp-radius) * -2);
+              bottom: auto;
+              width: calc(100% + var(--exp-radius) * 4);
+              height: calc(50% + var(--exp-radius) * 2);
+            }
+
+            .exp-card .glow-bottom {
+              bottom: calc(var(--exp-radius) * -2);
+              left: calc(var(--exp-radius) * -2);
+              right: calc(var(--exp-radius) * -2);
+              top: auto;
+              width: calc(100% + var(--exp-radius) * 4);
+              height: calc(50% + var(--exp-radius) * 2);
+            }
+
+            .exp-card .glow-bright.glow-top {
+              left: -7px;
+              right: -7px;
+              top: -7px;
+              bottom: auto;
+              width: calc(100% + 14px);
+              height: calc(50% + 7px);
+            }
+
+            .exp-card .glow-bright.glow-bottom {
+              bottom: -7px;
+              left: -7px;
+              right: -7px;
+              top: auto;
+              width: calc(100% + 14px);
+              height: calc(50% + 7px);
             }
           }
         `
