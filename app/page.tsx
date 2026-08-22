@@ -32,9 +32,9 @@ export default function Page() {
           
           @media (max-width: 768px) {
             #home {
-              min-height: 80vh !important;
-              height: 80vh !important;
-              max-height: 80vh !important;
+              min-height: 70vh !important;
+              height: 70vh !important;
+              max-height: 70vh !important;
               max-width: 100vw !important;
               overflow-x: hidden !important;
               overflow-y: visible !important;
@@ -107,7 +107,7 @@ export default function Page() {
           </div>
         </header>
 
-        <div className="md:snap-y md:snap-mandatory overflow-y-scroll overflow-x-hidden h-auto md:h-screen w-full" style={{ scrollPaddingTop: '0px', maxWidth: '100vw' }}>
+        <div id="main-scroll" className="md:snap-y md:snap-mandatory overflow-y-scroll overflow-x-hidden h-auto md:h-screen w-full" style={{ scrollPaddingTop: '0px', maxWidth: '100vw' }}>
           <HeroSection />
           <AboutSection />
           <ExperienceSection />

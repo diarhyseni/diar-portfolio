@@ -12,10 +12,45 @@ export function HeroSection() {
   const [displayText, setDisplayText] = useState("")
   const [isDeleting, setIsDeleting] = useState(false)
   const [isMounted, setIsMounted] = useState(false)
+  const [isBgAnimPaused, setIsBgAnimPaused] = useState(false)
 
   useEffect(() => {
     setIsMounted(true)
     return () => setIsMounted(false)
+  }, [])
+
+  useEffect(() => {
+    const hero = document.getElementById("home")
+    const scrollRoot = document.getElementById("main-scroll")
+    if (!hero) return
+
+    let observer: IntersectionObserver | null = null
+
+    const setupObserver = () => {
+      observer?.disconnect()
+
+      const root =
+        scrollRoot && scrollRoot.scrollHeight > scrollRoot.clientHeight + 1
+          ? scrollRoot
+          : null
+
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          setIsBgAnimPaused(!entry.isIntersecting)
+        },
+        { root, threshold: 0.15 }
+      )
+
+      observer.observe(hero)
+    }
+
+    setupObserver()
+    window.addEventListener("resize", setupObserver)
+
+    return () => {
+      observer?.disconnect()
+      window.removeEventListener("resize", setupObserver)
+    }
   }, [])
 
   useEffect(() => {
@@ -207,6 +242,27 @@ export function HeroSection() {
           content: "";
           animation: hero-b 30s ease infinite;
           z-index: 1;
+        }
+
+        .hero-section-wrapper.hero-bg-paused picture::before,
+        .hero-section-wrapper.hero-bg-paused picture::after {
+          animation: none !important;
+          backdrop-filter: none !important;
+          -webkit-backdrop-filter: none !important;
+          opacity: 0 !important;
+          visibility: hidden;
+          pointer-events: none;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .hero-section-wrapper picture::before,
+          .hero-section-wrapper picture::after {
+            animation: none !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            opacity: 0 !important;
+            visibility: hidden;
+          }
         }
 
         @keyframes hero-b {
@@ -716,10 +772,10 @@ export function HeroSection() {
 
         @media (max-width: 768px) {
           .hero-section-wrapper {
-            height: 80vh;
-            min-height: 80vh;
-            max-height: 80vh;
-            padding: 3rem 1rem;
+            height: 70vh;
+            min-height: 70vh;
+            max-height: 70vh;
+            padding: 2.5rem 1rem;
             overflow: visible;
           }
           
@@ -819,7 +875,7 @@ export function HeroSection() {
     <section
       id="home"
       aria-label="Hero"
-        className="hero-section-wrapper"
+      className={`hero-section-wrapper${isBgAnimPaused ? " hero-bg-paused" : ""}`}
     >
         <picture>
         <img src="https://i.imgur.com/gIWOMuW.jpeg" width="3840" height="2160" alt="background" />
