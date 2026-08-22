@@ -89,8 +89,8 @@ export function SkillsSection() {
             scroll-snap-align: start;
             scroll-snap-stop: always;
             background: #000000;
-           background-image: url(https://assets.codepen.io/13471/abstract-light.jpg), linear-gradient(to right in oklab, hsl(var(--skills-hue2) 70% 75%), hsl(var(--skills-hue1) 50% 75%));            background-size: cover;background-size: cover;
-            background-position: center;
+           background-image: url(/abstract-light1.png), linear-gradient(to right in oklab, hsl(var(--skills-hue2) 70% 75%), hsl(var(--skills-hue1) 50% 75%));
+            background-size: cover;
             background-blend-mode: hard-light;
             overflow: hidden;
           }

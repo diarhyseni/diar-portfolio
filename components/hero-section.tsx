@@ -13,10 +13,19 @@ export function HeroSection() {
   const [isDeleting, setIsDeleting] = useState(false)
   const [isMounted, setIsMounted] = useState(false)
   const [isBgAnimPaused, setIsBgAnimPaused] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
     setIsMounted(true)
     return () => setIsMounted(false)
+  }, [])
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 768px)")
+    const update = () => setIsMobile(mq.matches)
+    update()
+    mq.addEventListener("change", update)
+    return () => mq.removeEventListener("change", update)
   }, [])
 
   useEffect(() => {
@@ -54,7 +63,10 @@ export function HeroSection() {
   }, [])
 
   useEffect(() => {
-    if (!isMounted) return
+    if (!isMounted || isMobile) {
+      if (isMobile) setDisplayText(HERO_ROLES[0])
+      return
+    }
 
     const currentRole = HERO_ROLES[roleIndex]
 
@@ -81,7 +93,7 @@ export function HeroSection() {
     }, delay)
 
     return () => clearTimeout(timeout)
-  }, [displayText, isDeleting, roleIndex, isMounted])
+  }, [displayText, isDeleting, roleIndex, isMounted, isMobile])
 
   return (
     <>
@@ -777,6 +789,11 @@ export function HeroSection() {
             max-height: 70vh;
             padding: 2.5rem 1rem;
             overflow: visible;
+            background: linear-gradient(160deg, #08080f 0%, #151028 45%, #0a1218 100%);
+          }
+
+          .hero-section-wrapper.hero-mobile-lite picture {
+            display: none;
           }
           
           .hero-section-wrapper figure {
@@ -875,11 +892,21 @@ export function HeroSection() {
     <section
       id="home"
       aria-label="Hero"
-      className={`hero-section-wrapper${isBgAnimPaused ? " hero-bg-paused" : ""}`}
+      className={`hero-section-wrapper${isBgAnimPaused || isMobile ? " hero-bg-paused" : ""}${isMobile ? " hero-mobile-lite" : ""}`}
     >
+      {!isMobile && (
         <picture>
-        <img src="https://i.imgur.com/gIWOMuW.jpeg" width="3840" height="2160" alt="background" />
-      </picture>
+          <img
+            src="/abstract-light1.png"
+            width={1920}
+            height={1080}
+            alt=""
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+          />
+        </picture>
+      )}
       <figure>
         <span className="shine shine-top"></span>
         <span className="shine shine-bottom"></span>

@@ -59,7 +59,7 @@ export function AboutSection() {
 
           #about {
             background: #000;
-            background-image: url(https://assets.codepen.io/13471/abstract-light.jpg), linear-gradient(to right in oklab, hsl(var(--about-hue2) 50% 75%), hsl(var(--about-hue1) 50% 75%));
+            background-image: url(/abstract-light1.png), linear-gradient(to right in oklab, hsl(var(--about-hue2) 50% 75%), hsl(var(--about-hue1) 50% 75%));
            */ background-size: cover;
             background-position: center;
             background-blend-mode: hard-light;

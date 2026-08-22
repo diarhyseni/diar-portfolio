@@ -119,7 +119,7 @@ export function ExperienceSection() {
             padding: 0;
             scroll-snap-align: start;
             background: #000;
-           background-image: url(https://i.ibb.co/PvXj31RZ/pexels-marek-piwnicki-3907296-9202300.jpg), linear-gradient(to right in oklab, hsl(var(--exp-hue2) 50% 70%), hsl(var(--exp-hue1) 50% 70%));
+           background-image: url(/abstract-light1.png), linear-gradient(to right in oklab, hsl(var(--exp-hue2) 50% 70%), hsl(var(--exp-hue1) 50% 70%));
             background-size: cover;
             background-position: center;
             background-blend-mode: hard-light;

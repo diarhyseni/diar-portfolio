@@ -19,7 +19,8 @@ export function ProjectsSection() {
 
   useEffect(() => {
     const handleResize = () => {
-      setMaxProjects(window.innerWidth >= 1920 ? 8 : 9)
+      const isMobile = window.innerWidth < 768
+      setMaxProjects(isMobile ? 6 : window.innerWidth >= 1920 ? 8 : 9)
     }
 
     // Set initial value

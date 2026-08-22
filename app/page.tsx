@@ -107,7 +107,7 @@ export default function Page() {
           </div>
         </header>
 
-        <div id="main-scroll" className="md:snap-y md:snap-mandatory overflow-y-scroll overflow-x-hidden h-auto md:h-screen w-full" style={{ scrollPaddingTop: '0px', maxWidth: '100vw' }}>
+        <div id="main-scroll" className="md:snap-y md:snap-mandatory overflow-y-auto overflow-x-hidden h-auto md:h-screen w-full overscroll-y-contain" style={{ scrollPaddingTop: '0px', maxWidth: '100vw', WebkitOverflowScrolling: 'touch' }}>
           <HeroSection />
           <AboutSection />
           <ExperienceSection />
