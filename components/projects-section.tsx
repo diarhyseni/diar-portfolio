@@ -634,7 +634,10 @@ export function ProjectsSection() {
 
           <>
             <div className="projects-grid grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {projects.slice(0, maxProjects).map((project, index) => (
+          {[...projects]
+            .sort((a, b) => Number(b.year) - Number(a.year))
+            .slice(0, maxProjects)
+            .map((project, index) => (
             <article
                 key={project.id}
                 className="project-card animate-in fade-in slide-in-from-bottom"
