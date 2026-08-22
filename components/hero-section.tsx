@@ -13,19 +13,10 @@ export function HeroSection() {
   const [isDeleting, setIsDeleting] = useState(false)
   const [isMounted, setIsMounted] = useState(false)
   const [isBgAnimPaused, setIsBgAnimPaused] = useState(false)
-  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
     setIsMounted(true)
     return () => setIsMounted(false)
-  }, [])
-
-  useEffect(() => {
-    const mq = window.matchMedia("(max-width: 768px)")
-    const update = () => setIsMobile(mq.matches)
-    update()
-    mq.addEventListener("change", update)
-    return () => mq.removeEventListener("change", update)
   }, [])
 
   useEffect(() => {
@@ -63,10 +54,7 @@ export function HeroSection() {
   }, [])
 
   useEffect(() => {
-    if (!isMounted || isMobile) {
-      if (isMobile) setDisplayText(HERO_ROLES[0])
-      return
-    }
+    if (!isMounted) return
 
     const currentRole = HERO_ROLES[roleIndex]
 
@@ -93,7 +81,7 @@ export function HeroSection() {
     }, delay)
 
     return () => clearTimeout(timeout)
-  }, [displayText, isDeleting, roleIndex, isMounted, isMobile])
+  }, [displayText, isDeleting, roleIndex, isMounted])
 
   return (
     <>
@@ -157,6 +145,7 @@ export function HeroSection() {
           content: "";
           animation: hero-a 30s ease infinite;
           z-index: 1;
+          pointer-events: none;
         }
 
         @keyframes hero-a {
@@ -254,27 +243,7 @@ export function HeroSection() {
           content: "";
           animation: hero-b 30s ease infinite;
           z-index: 1;
-        }
-
-        .hero-section-wrapper.hero-bg-paused picture::before,
-        .hero-section-wrapper.hero-bg-paused picture::after {
-          animation: none !important;
-          backdrop-filter: none !important;
-          -webkit-backdrop-filter: none !important;
-          opacity: 0 !important;
-          visibility: hidden;
           pointer-events: none;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          .hero-section-wrapper picture::before,
-          .hero-section-wrapper picture::after {
-            animation: none !important;
-            backdrop-filter: none !important;
-            -webkit-backdrop-filter: none !important;
-            opacity: 0 !important;
-            visibility: hidden;
-          }
         }
 
         @keyframes hero-b {
@@ -359,6 +328,27 @@ export function HeroSection() {
             bottom: 0;
             backdrop-filter: blur(2vmin) hue-rotate(0deg);
             -webkit-backdrop-filter: blur(2vmin) hue-rotate(0deg);
+          }
+        }
+
+        .hero-section-wrapper.hero-bg-paused picture::before,
+        .hero-section-wrapper.hero-bg-paused picture::after {
+          animation: none !important;
+          backdrop-filter: none !important;
+          -webkit-backdrop-filter: none !important;
+          opacity: 0 !important;
+          visibility: hidden;
+          pointer-events: none;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .hero-section-wrapper picture::before,
+          .hero-section-wrapper picture::after {
+            animation: none !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            opacity: 0 !important;
+            visibility: hidden;
           }
         }
 
@@ -789,13 +779,8 @@ export function HeroSection() {
             max-height: 70vh;
             padding: 2.5rem 1rem;
             overflow: visible;
-            background: linear-gradient(160deg, #08080f 0%, #151028 45%, #0a1218 100%);
           }
 
-          .hero-section-wrapper.hero-mobile-lite picture {
-            display: none;
-          }
-          
           .hero-section-wrapper figure {
             max-width: 100%;
             width: 100%;
@@ -892,21 +877,19 @@ export function HeroSection() {
     <section
       id="home"
       aria-label="Hero"
-      className={`hero-section-wrapper${isBgAnimPaused || isMobile ? " hero-bg-paused" : ""}${isMobile ? " hero-mobile-lite" : ""}`}
+      className={`hero-section-wrapper${isBgAnimPaused ? " hero-bg-paused" : ""}`}
     >
-      {!isMobile && (
-        <picture>
-          <img
-            src="/abstract-light1.png"
-            width={1920}
-            height={1080}
-            alt=""
-            loading="eager"
-            fetchPriority="high"
-            decoding="async"
-          />
-        </picture>
-      )}
+      <picture>
+        <img
+          src="https://i.imgur.com/gIWOMuW.jpeg"
+          width={3840}
+          height={2160}
+          alt=""
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
+        />
+      </picture>
       <figure>
         <span className="shine shine-top"></span>
         <span className="shine shine-bottom"></span>

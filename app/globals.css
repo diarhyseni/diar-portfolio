@@ -130,7 +130,7 @@
     width: 100%;
     overflow-x: hidden;
   }
-  
+
   @media (max-width: 768px) {
     html, body {
       overflow-x: hidden !important;
@@ -138,48 +138,19 @@
       width: 100% !important;
     }
 
-    /* Mobile: disable GPU-heavy decorative effects */
-    .shine,
-    .shine-top,
-    .shine-bottom,
-    .glow,
-    .glow-top,
-    .glow-bottom,
-    .glow-bright {
-      display: none !important;
-    }
-
-    .hero-section-wrapper picture::before,
-    .hero-section-wrapper picture::after {
-      display: none !important;
-      animation: none !important;
-    }
-
-    .about-card,
-    .about-text-card,
-    .contact-card,
-    .hero-section-wrapper figure,
+    /* Mobile: disable GPU-heavy blur on project cards only */
     .project-card,
+    .section-nav,
     .section-nav-button {
       backdrop-filter: none !important;
       -webkit-backdrop-filter: none !important;
     }
 
-    #about,
-    #contact,
-    #skills,
-    #experience {
-      background-image: none !important;
-    }
-
-    .strength-icon,
-    .hero-typing-text {
+    .strength-icon {
       animation: none !important;
     }
 
     #home,
-    #about,
-    #experience,
     #skills,
     #projects,
     #contact {
@@ -187,4 +158,58 @@
       contain-intrinsic-size: auto 100vh;
     }
   }
+}
+
+#about .about-card,
+#about .about-text-card,
+#experience .exp-card,
+#skills .skills-card,
+#contact .contact-card {
+  overflow: visible !important;
+}
+
+#about .about-card,
+#about .about-text-card,
+#experience .exp-card,
+#skills .skills-card,
+#contact .contact-card {
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+}
+
+/* Slightly smaller glow-bright corner accent on glass cards */
+#about .glow-bright,
+#experience .glow-bright,
+#skills .glow-bright,
+#contact .glow-bright,
+#home .glow-bright {
+  --start: 18% !important;
+  --end: 32% !important;
+  border-width: 3px !important;
+  filter: blur(1.5px) brightness(0.66) !important;
+  opacity: 0.75 !important;
+}
+
+#about .glow-bright.glow-top,
+#experience .glow-bright.glow-top,
+#skills .glow-bright.glow-top,
+#contact .glow-bright.glow-top,
+#home .glow-bright.glow-top {
+  left: -4px !important;
+  right: -4px !important;
+  top: -4px !important;
+  width: calc(100% + 8px) !important;
+  height: calc(50% + 4px) !important;
+}
+
+#about .glow-bright.glow-bottom,
+#experience .glow-bright.glow-bottom,
+#skills .glow-bright.glow-bottom,
+#contact .glow-bright.glow-bottom,
+#home .glow-bright.glow-bottom {
+  bottom: -4px !important;
+  left: -4px !important;
+  right: -4px !important;
+  width: calc(100% + 8px) !important;
+  height: calc(50% + 4px) !important;
 }

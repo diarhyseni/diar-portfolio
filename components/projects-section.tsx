@@ -72,17 +72,34 @@ export function ProjectsSection() {
           }
 
           #projects {
+            position: relative;
+            isolation: isolate;
             min-height: 130vh;
             display: flex;
             align-items: center;
             padding: 2rem 2rem;
             scroll-snap-align: start;
             scroll-snap-stop: always;
-            background: #000000;
-          /* background-image: url(https://assets.codepen.io/13471/abstract-light.jpg), linear-gradient(to right in oklab, hsl(var(--projects-hue2) 50% 75%), hsl(var(--projects-hue1) 50% 75%));*/
+            background: #000;
+            background-image: url(/abract_light_55.jpg), linear-gradient(to right in oklab, hsl(var(--projects-hue2) 50% 70%), hsl(var(--projects-hue1) 50% 70%));
             background-size: cover;
             background-position: center;
+            background-repeat: no-repeat;
             background-blend-mode: hard-light;
+          }
+
+          #projects::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background: rgba(0, 0, 0, 0.3);
+          }
+
+          #projects > div {
+            position: relative;
+            z-index: 1;
           }
 
           @media (min-width: 768px) and (max-width: 1024px) {

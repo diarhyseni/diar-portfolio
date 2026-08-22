@@ -66,6 +66,8 @@ export function ContactSection() {
           }
 
           #contact {
+            position: relative;
+            isolation: isolate;
             height: 100vh;
             min-height: 100vh;
             display: flex;
@@ -73,10 +75,24 @@ export function ContactSection() {
             padding: 0;
             scroll-snap-align: start;
             background: #08090d;
-            background-image: url(/abstract-light1.png), linear-gradient(to right in oklab, hsl(var(--contact-hue2) 50% 75%), hsl(var(--contact-hue1) 50% 75%));
+            background-image: url(/abstract-light_33.jpg), linear-gradient(to right in oklab, hsl(var(--contact-hue2) 50% 75%), hsl(var(--contact-hue1) 50% 75%));
             background-size: cover;
             background-position: center;
             background-blend-mode: hard-light;
+          }
+
+          #contact::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background: rgba(0, 0, 0, 0.22);
+          }
+
+          #contact > div {
+            position: relative;
+            z-index: 1;
           }
 
           #contact * {
@@ -748,7 +764,7 @@ export function ContactSection() {
           .contact-button {
             position: relative;
             padding: 14px 32px;
-            border: 0.5px solidrgba(255, 255, 255, 0.09);
+            border: 0.5px solid rgba(255, 255, 255, 0.09);
             background: linear-gradient(235deg, hsl(var(--contact-hue1) 55% 15% / 0.9), hsl(var(--contact-hue1) 55% 15% / 0) 50%), 
                         linear-gradient(45deg, hsl(var(--contact-hue2) 55% 15% / 0.9), hsl(var(--contact-hue2) 55% 15% / 0) 50%), 
                         linear-gradient(hsl(220deg 25% 0% / 0.1));
@@ -810,11 +826,16 @@ export function ContactSection() {
             border-right-color: hsl(var(--contact-hue1), 80%, 70%);
           }
           
-          .contact-button:hover {
+          .contact-button:hover:not(:disabled) {
             background: linear-gradient(235deg, hsl(var(--contact-hue1) 60% 20% / 0.9), hsl(var(--contact-hue1) 60% 20% / 0) 40%), 
                         linear-gradient(45deg, hsl(var(--contact-hue2) 60% 20% / 0.9), hsl(var(--contact-hue2) 60% 20% / 0) 40%), 
                         linear-gradient(hsl(220deg 25% 0% / 0.6));
             transform: translateY(-2px);
+          }
+
+          .contact-button:disabled {
+            opacity: 0.55;
+            cursor: not-allowed;
           }
 
           .contact-social-item {

@@ -88,9 +88,12 @@ export function SkillsSection() {
             padding: 2rem 1rem;
             scroll-snap-align: start;
             scroll-snap-stop: always;
-            background: #000000;
-           background-image: url(/abstract-light1.png), linear-gradient(to right in oklab, hsl(var(--skills-hue2) 70% 75%), hsl(var(--skills-hue1) 50% 75%));
+            background: #000;
+            background-image: url(/abract_light_55.jpg), linear-gradient(to right in oklab, hsl(var(--skills-hue2) 50% 70%), hsl(var(--skills-hue1) 50% 70%));
             background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            
             background-blend-mode: hard-light;
             overflow: hidden;
           }
@@ -203,9 +206,9 @@ export function SkillsSection() {
             border: var(--skills-border) solid var(--skills-border-color);
             background: linear-gradient(235deg, hsl(var(--skills-hue1) 50% 10% / 0.9), hsl(var(--skills-hue1) 50% 10% / 0) 25%), 
                         linear-gradient(45deg, hsl(var(--skills-hue2) 50% 10% / 0.9), hsl(var(--skills-hue2) 50% 10% / 0) 25%), 
-                        linear-gradient(hsl(220deg 25% 0% / 0.85));
-            backdrop-filter: blur(40px);
-            -webkit-backdrop-filter: blur(40px);
+                        linear-gradient(hsl(220deg 25% 0% / 0.6));
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             box-shadow: hsl(var(--skills-hue2) 50% 2%) 0px 10px 16px -8px, hsl(var(--skills-hue2) 50% 4%) 0px 20px 36px -14px;
             overflow: visible;
             padding: 2rem;

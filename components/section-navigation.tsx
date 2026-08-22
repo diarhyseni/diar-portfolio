@@ -1,9 +1,29 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { ChevronUp, ChevronDown } from 'lucide-react'
 
 const SECTIONS = ['home', 'about', 'experience', 'skills', 'projects', 'contact'] as const
+
+function NavArrow({ direction }: { direction: 'up' | 'down' }) {
+  return (
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 14 14"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <path
+        d={direction === 'up' ? 'M7 11V3M4 6.5L7 3L10 6.5' : 'M7 3V11M4 7.5L7 11L10 7.5'}
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
 
 export function SectionNavigation() {
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0)
@@ -63,65 +83,53 @@ export function SectionNavigation() {
             z-index: 50;
             display: flex;
             flex-direction: column;
-            gap: 0.75rem;
+            isolation: isolate;
+            background: #0a0a0f;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.55);
           }
 
           .section-nav-button {
-            width: 3rem;
-            height: 3rem;
-            border-radius: 50%;
-            background: linear-gradient(235deg, hsl(290 55% 15% / 0.9), hsl(290 55% 15% / 0) 50%), 
-                        linear-gradient(45deg, hsl(240 55% 15% / 0.9), hsl(240 55% 15% / 0) 50%), 
-                        linear-gradient(hsl(220deg 25% 0% / 0.1));
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 0.5px solid rgba(255, 255, 255, 0.09);
-            color: white;
+            width: 2.75rem;
+            height: 2.75rem;
+            border: none;
+            border-radius: 0;
+            background: #0a0a0f;
+            color: rgba(255, 255, 255, 0.9);
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: visible;
+            padding: 0;
+            transition: background-color 0.2s ease, color 0.2s ease;
           }
 
-          .section-nav-button::before {
-            content: "";
-            position: absolute;
-            inset: -2px;
-            border: 2px solid;
-            border-top-color: hsl(290, 80%, 60%, 0.7);
-            border-right-color: hsl(290, 80%, 60%, 0.7);
-            border-bottom-color: hsl(240, 80%, 60%, 0.7);
-            border-left-color: hsl(240, 80%, 60%, 0.7);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+          .section-nav-divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.12);
+            flex-shrink: 0;
           }
 
-          .section-nav-button:hover::before {
-            opacity: 1;
+          .section-nav-button:hover:not(:disabled) {
+            background: #14141c;
+            color: #ffffff;
           }
 
-          .section-nav-button:hover {
-            transform: translateY(-2px);
-            background: linear-gradient(235deg, hsl(290 60% 20% / 0.9), hsl(290 60% 20% / 0) 40%), 
-                        linear-gradient(45deg, hsl(240 60% 20% / 0.9), hsl(240 60% 20% / 0) 40%), 
-                        linear-gradient(hsl(220deg 25% 0% / 0.6));
+          .section-nav-button:active:not(:disabled) {
+            background: #1a1a24;
+          }
+
+          .section-nav-button:focus-visible {
+            outline: 2px solid rgba(255, 255, 255, 0.45);
+            outline-offset: -2px;
           }
 
           .section-nav-button:disabled {
-            opacity: 0.3;
             cursor: not-allowed;
-            pointer-events: none;
-          }
-
-          .section-nav-button svg {
-            width: 1.5rem;
-            height: 1.5rem;
+            color: rgba(255, 255, 255, 0.2);
+            background: #0a0a0f;
           }
 
           @media (max-width: 768px) {
@@ -133,24 +141,27 @@ export function SectionNavigation() {
           }
         `
       }} />
-      <div className="section-nav">
+      <nav className="section-nav" aria-label="Section navigation">
         <button
+          type="button"
           className="section-nav-button"
           onClick={goToPrevious}
           disabled={currentSectionIndex === 0}
           aria-label="Previous section"
         >
-          <ChevronUp />
+          <NavArrow direction="up" />
         </button>
+        <span className="section-nav-divider" aria-hidden="true" />
         <button
+          type="button"
           className="section-nav-button"
           onClick={goToNext}
           disabled={currentSectionIndex === SECTIONS.length - 1}
           aria-label="Next section"
         >
-          <ChevronDown />
+          <NavArrow direction="down" />
         </button>
-      </div>
+      </nav>
     </>
   )
 }

@@ -58,10 +58,12 @@ export function AboutSection() {
           }
 
           #about {
+            position: relative;
             background: #000;
-            background-image: url(/abstract-light1.png), linear-gradient(to right in oklab, hsl(var(--about-hue2) 50% 75%), hsl(var(--about-hue1) 50% 75%));
-           */ background-size: cover;
-            background-position: center;
+            background-image: url(/abstract_light_11.jpg), linear-gradient(to right in oklab, hsl(var(--about-hue2) 50% 75%), hsl(var(--about-hue1) 50% 75%));
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
             background-blend-mode: hard-light;
             min-height: auto;
             padding: 2rem 1rem;
@@ -69,6 +71,17 @@ export function AboutSection() {
             align-items: center;
             scroll-snap-align: start;
             scroll-snap-stop: always;
+            overflow: hidden;
+          }
+
+          #about::before {
+            display: none;
+          }
+
+          #about > div {
+            position: relative;
+            z-index: 1;
+            width: 100%;
           }
 
           @media (min-width: 768px) {
@@ -126,8 +139,8 @@ export function AboutSection() {
             }
 
             #about > div:first-child {
-              transform: scale(0.80);
-              transform-origin: top center;
+              max-width: 90%;
+              margin-inline: auto;
             }
           }
 
@@ -142,8 +155,8 @@ export function AboutSection() {
             }
 
             #about > div:first-child {
-              transform: scale(0.95);
-              transform-origin: center;
+              max-width: 95%;
+              margin-inline: auto;
             }
 
             .about-grid {
@@ -246,7 +259,7 @@ export function AboutSection() {
             border: var(--about-border) solid var(--about-border-color);
             background: linear-gradient(235deg, hsl(var(--about-hue1) 50% 10% / 0.9), hsl(var(--about-hue1) 50% 10% / 0) 25%), 
                         linear-gradient(45deg, hsl(var(--about-hue2) 50% 10% / 0.9), hsl(var(--about-hue2) 50% 10% / 0) 25%), 
-                        linear-gradient(hsl(220deg 25% 0% / 0.9));
+                        linear-gradient(hsl(220deg 25% 0% / 0.6));
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             box-shadow: hsl(var(--about-hue2) 50% 2%) 0px 10px 16px -8px, hsl(var(--about-hue2) 50% 4%) 0px 20px 36px -14px;
@@ -580,9 +593,9 @@ export function AboutSection() {
             border: var(--about-border) solid var(--about-border-color);
             background: linear-gradient(235deg, hsl(var(--about-hue1) 50% 10% / 0.9), hsl(var(--about-hue1) 50% 10% / 0) 25%), 
                         linear-gradient(45deg, hsl(var(--about-hue2) 50% 10% / 0.9), hsl(var(--about-hue2) 50% 10% / 0) 25%), 
-                        linear-gradient(hsl(220deg 25% 0% / 0.9));
-            backdrop-filter: blur(4S0px) !important;
-            -webkit-backdrop-filter: blur(40px) !important;
+                        linear-gradient(hsl(220deg 25% 0% / 0.6));
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             box-shadow: hsl(var(--about-hue2) 50% 2%) 0px 10px 16px -8px, hsl(var(--about-hue2) 50% 4%) 0px 20px 36px -14px;
             overflow: visible;
             padding: 1.5rem;
@@ -1019,7 +1032,7 @@ export function AboutSection() {
         <div className="max-w-5xl mx-auto w-full">
         <div className="grid md:grid-cols-2 gap-8 items-center about-grid">
           {/* Left side - Text content */}
-          <div className="space-y-6 animate-in fade-in slide-in-from-left duration-700">
+          <div className="space-y-6">
             <div className="about-text-card about-card">
               <span className="shine shine-top"></span>
               <span className="shine shine-bottom"></span>
@@ -1078,7 +1091,7 @@ export function AboutSection() {
           </div>
 
           {/* Right side - Strengths grid */}
-          <div className="space-y-6 animate-in fade-in slide-in-from-right duration-700 delay-200">
+          <div className="space-y-6">
             {/* Strengths grid */}
             <div className="grid grid-cols-2 sm:grid-cols-2 gap-4">
               {strengths.map((strength, index) => (

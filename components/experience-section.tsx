@@ -113,16 +113,25 @@ export function ExperienceSection() {
           }
 
           #experience {
+            position: relative;
             min-height: 100vh;
             display: flex;
             align-items: center;
             padding: 0;
             scroll-snap-align: start;
             background: #000;
-           background-image: url(/abstract-light1.png), linear-gradient(to right in oklab, hsl(var(--exp-hue2) 50% 70%), hsl(var(--exp-hue1) 50% 70%));
+           background-image: url(/abract_light_55.jpg), linear-gradient(to right in oklab, hsl(var(--exp-hue2) 50% 70%), hsl(var(--exp-hue1) 50% 70%));
             background-size: cover;
             background-position: center;
+            background-repeat: no-repeat;
             background-blend-mode: hard-light;
+          }
+
+          .exp-grid-col {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            min-height: 0;
           }
 
           .exp-card {
@@ -131,9 +140,9 @@ export function ExperienceSection() {
             border: var(--exp-border) solid var(--exp-border-color);
             background: linear-gradient(235deg, hsl(var(--exp-hue1) 50% 10% / 0.9), hsl(var(--exp-hue1) 50% 10% / 0) 25%), 
                         linear-gradient(45deg, hsl(var(--exp-hue2) 50% 10% / 0.9), hsl(var(--exp-hue2) 50% 10% / 0) 25%), 
-                        linear-gradient(hsl(220deg 25% 0% / 0.85));
-            backdrop-filter: blur(40px);
-            -webkit-backdrop-filter: blur(40px);
+                        linear-gradient(hsl(220deg 25% 0% / 0.6));
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             box-shadow: hsl(var(--exp-hue2) 50% 2%) 0px 10px 16px -8px, hsl(var(--exp-hue2) 50% 4%) 0px 20px 36px -14px;
             overflow: visible;
             padding: 1.5rem;
@@ -141,6 +150,20 @@ export function ExperienceSection() {
             height: 100%;
             display: flex;
             flex-direction: column;
+            opacity: 0;
+            transition: opacity 1.2s ease;
+          }
+
+          .exp-card.is-visible {
+            opacity: 1;
+          }
+
+          .exp-grid-col:nth-child(2) .exp-card {
+            transition-delay: 0.3s;
+          }
+
+          .exp-item {
+            opacity: 1;
           }
 
           @media (min-width: 1367px) {
@@ -686,8 +709,8 @@ export function ExperienceSection() {
         <div className="max-w-6xl mx-auto w-full">
           <div className="exp-grid">
               {/* Experience Column */}
-              <div className={`exp-grid-col ${isVisible ? 'animate-in fade-in slide-in-from-left duration-1200' : 'opacity-0'}`}>
-                <div className="exp-card">
+              <div className="exp-grid-col">
+                <div className={`exp-card ${isVisible ? 'is-visible' : ''}`}>
                   <span className="shine shine-top"></span>
                   <span className="shine shine-bottom"></span>
                   <span className="glow glow-top"></span>
@@ -696,7 +719,7 @@ export function ExperienceSection() {
                   <span className="glow glow-bright glow-bottom"></span>
                   <p className="exp-section-title">Experience</p>
                   {experiences.map((exp, index) => (
-                      <div key={index} className={`exp-item ${isVisible ? 'animate-in fade-in slide-in-from-bottom duration-700' : 'opacity-0'}`} style={isVisible ? { animationDelay: `${index * 100}ms` } : {}}>
+                      <div key={index} className="exp-item">
                         <div className="exp-period">{exp.period}</div>
                         <div className="exp-company">
                           {exp.company}
@@ -712,8 +735,8 @@ export function ExperienceSection() {
               </div>
 
               {/* Education Column */}
-              <div className={`exp-grid-col ${isVisible ? 'animate-in fade-in slide-in-from-right duration-1200 delay-300' : 'opacity-0'}`}>
-                <div className="exp-card">
+              <div className="exp-grid-col">
+                <div className={`exp-card ${isVisible ? 'is-visible' : ''}`}>
                   <span className="shine shine-top"></span>
                   <span className="shine shine-bottom"></span>
                   <span className="glow glow-top"></span>
@@ -722,7 +745,7 @@ export function ExperienceSection() {
                   <span className="glow glow-bright glow-bottom"></span>
                   <p className="exp-section-title">Education</p>
                   {educations.map((edu, index) => (
-                      <div key={index} className={`exp-item ${isVisible ? 'animate-in fade-in slide-in-from-bottom duration-700' : 'opacity-0'}`} style={isVisible ? { animationDelay: `${index * 100}ms` } : {}}>
+                      <div key={index} className="exp-item">
                         <div className="exp-period">{edu.period}</div>
                         <div className="exp-company">{edu.institution}</div>
                         <div className="exp-position">{edu.degree}</div>
