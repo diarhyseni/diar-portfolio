@@ -96,31 +96,6 @@ export const projects: Project[] = [
     live_url: "https://terminiyt.com/",
   },
   {
-    id: "6b7ce765-92a3-4e24-9977-5f90db168e64",
-    title: "Real Estate Platform – Property Listings for Sale & Rent",
-    description:
-      "Explore residential and commercial properties for sale or rent through a modern real estate platform designed to help you find the right property quickly and easily.",
-    short_description:
-      "Explore residential and commercial properties for sale or rent through a modern real estate platform designed to help you find the right property quic",
-    gallery: [
-      "/projects/real-estate-platform/real-estate-platform_1.png",
-      "/projects/real-estate-platform/real-estate-platform_2.png",
-      "/projects/real-estate-platform/real-estate-platform_3.png",
-      "/projects/real-estate-platform/real-estate-platform_4.png",
-      "/projects/real-estate-platform/real-estate-platform_5.png",
-      "/projects/real-estate-platform/real-estate-platform_6.png",
-      "/projects/real-estate-platform/real-estate-platform_7.png",
-      "/projects/real-estate-platform/real-estate-platform_8.png",
-      "/projects/real-estate-platform/real-estate-platform_9.png",
-      "/projects/real-estate-platform/real-estate-platform_10.png",
-      "/projects/real-estate-platform/real-estate-platform_11.png",
-    ],
-    technologies: ["SiNextdotjs", "SiTailwindcss", "SiSupabase"],
-    year: "2026",
-    github_url: null,
-    live_url: null,
-  },
-  {
     id: "a1b2c3d4-e5f6-4789-a012-3456789abc05",
     title: "Cherry Plaza — Smart Residential Community Platform",
     description:
