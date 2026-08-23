@@ -350,6 +350,13 @@ export function HeroSection() {
             opacity: 0 !important;
             visibility: hidden;
           }
+
+          .hero-section-wrapper figure,
+          .hero-section-wrapper .hero-content > * {
+            animation: none !important;
+            opacity: 1 !important;
+            transform: none !important;
+          }
         }
 
         .hero-section-wrapper figure {
@@ -368,6 +375,40 @@ export function HeroSection() {
           -webkit-backdrop-filter: blur(20px);
           box-shadow: hsl(var(--hero-hue2) 50% 2%) 0px 10px 16px -8px, hsl(var(--hero-hue2) 50% 4%) 0px 20px 36px -14px;
           overflow: visible;
+          animation: hero-card-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        .hero-section-wrapper .hero-content > * {
+          animation: hero-line-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        .hero-section-wrapper .hero-content > *:nth-child(1) { animation-delay: 0.08s; }
+        .hero-section-wrapper .hero-content > *:nth-child(2) { animation-delay: 0.16s; }
+        .hero-section-wrapper .hero-content > *:nth-child(3) { animation-delay: 0.24s; }
+        .hero-section-wrapper .hero-content > *:nth-child(4) { animation-delay: 0.32s; }
+        .hero-section-wrapper .hero-content > *:nth-child(5) { animation-delay: 0.4s; }
+
+        @keyframes hero-card-in {
+          from {
+            opacity: 0;
+            transform: translateY(1rem);
+          }
+          to {
+            opacity: 1;
+            transform: none;
+          }
+        }
+
+        @keyframes hero-line-in {
+          from {
+            opacity: 0;
+            transform: translateY(0.6rem);
+          }
+          to {
+            opacity: 1;
+            transform: none;
+          }
+        }
           z-index: 2;
           font-family: "Science Gothic", sans-serif;
           font-weight: 300;

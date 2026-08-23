@@ -1,7 +1,7 @@
 "use client"
 
-import Image from "next/image"
 import { Search } from "lucide-react"
+import { FaJava } from "react-icons/fa"
 import {
   SiAccuweather,
   SiCss3,
@@ -29,21 +29,12 @@ import {
 } from "react-icons/si"
 import { ComponentType } from "react"
 
-// Custom Java Icon Component
 const JavaIcon = ({ className }: { className?: string }) => (
-  <Image
-    src="/java.png"
-    alt="Java"
-    width={40}
-    height={40}
-    className={className}
-    style={{ width: '2.5rem', height: '2.5rem', objectFit: 'contain' }}
-  />
+  <FaJava className={className} aria-hidden="true" />
 )
 
-// SEO Icon Component
 const SeoIcon = ({ className }: { className?: string }) => (
-  <Search className={className} style={{ width: '2.5rem', height: '2.5rem' }} />
+  <Search className={className} aria-hidden="true" />
 )
 
 const iconMap: Record<string, ComponentType<{ className?: string }>> = {

@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { Mail, Github, Linkedin } from "lucide-react"
 import { useState } from "react"
 import { toast } from "sonner"
+import { useReveal } from "@/hooks/use-reveal"
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
@@ -16,6 +17,7 @@ export function ContactSection() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const cardReveal = useReveal<HTMLDivElement>({ threshold: 0.12 })
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -903,7 +905,10 @@ export function ContactSection() {
         <div className="max-w-5xl mx-auto w-full">
           <div className="max-w-2xl mx-auto">
             {/* Contact Form */}
-            <div className="contact-card">
+            <div
+              ref={cardReveal.ref}
+              className={`contact-card reveal-up ${cardReveal.revealClass}`}
+            >
               <span className="shine shine-top"></span>
               <span className="shine shine-bottom"></span>
               <span className="glow glow-top"></span>

@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { getIconComponent } from "@/lib/icon-mapper"
+import { useReveal } from "@/hooks/use-reveal"
 
 type SkillCategory = "all" | "frontend" | "backend" | "technologies"
 
@@ -40,6 +41,8 @@ const skills: Skill[] = [
 
 export function SkillsSection() {
   const [activeFilter, setActiveFilter] = useState<SkillCategory>("all")
+  const cardReveal = useReveal<HTMLDivElement>({ threshold: 0.1 })
+  const gridReveal = useReveal<HTMLDivElement>({ threshold: 0.08 })
 
   // Transform skills for display with icons
   const skillsWithIcons = skills.map(skill => {
@@ -636,8 +639,11 @@ export function SkillsSection() {
 
           .skill-icon {
             font-size: 2.5rem;
+            width: 1em;
+            height: 1em;
             color: white;
             transition: transform 0.3s ease;
+            flex-shrink: 0;
           }
 
           .skill-item:hover .skill-icon {
@@ -654,21 +660,21 @@ export function SkillsSection() {
 
           @media (max-width: 768px) {
             .skills-grid {
-              grid-template-columns: repeat(3, 1fr);
-              gap: 0.5rem;
+              grid-template-columns: repeat(4, 1fr);
+              gap: 0.4rem;
             }
 
             .skill-item {
-              padding: 0.75rem 0.5rem;
-              gap: 0.5rem;
+              padding: 0.6rem 0.25rem;
+              gap: 0.4rem;
             }
 
             .skill-icon {
-              font-size: 1.75rem;
+              font-size: 1.5rem;
             }
 
             .skill-name {
-              font-size: 11px;
+              font-size: 10px;
             }
           }
 
@@ -695,7 +701,10 @@ export function SkillsSection() {
       }} />
       <section id="skills" aria-label="Skills">
         <div className="max-w-6xl mx-auto w-full">
-          <div className="skills-card">
+          <div
+            ref={cardReveal.ref}
+            className={`skills-card reveal-scale ${cardReveal.revealClass}`}
+          >
             <span className="shine shine-top"></span>
             <span className="shine shine-bottom"></span>
             <span className="glow glow-top"></span>
@@ -714,13 +723,16 @@ export function SkillsSection() {
                 </button>
               ))}
             </div>
-            <div className="skills-grid">
+            <div
+              ref={gridReveal.ref}
+              className={`skills-grid reveal-stagger ${gridReveal.revealClass}`}
+            >
               {displaySkills.map((skill) => {
                   const IconComponent = skill.icon
                   return (
                   <div
                     key={skill.name}
-                    className={`skill-item ${skill.isHighlighted ? 'highlighted' : ''}`}
+                    className={`skill-item reveal-item ${skill.isHighlighted ? 'highlighted' : ''}`}
                   >
                       {IconComponent ? (
                         <IconComponent className="skill-icon" />

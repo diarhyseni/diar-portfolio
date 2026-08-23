@@ -11,11 +11,14 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog"
+import { useReveal } from "@/hooks/use-reveal"
 
 export function ProjectsSection() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [maxProjects, setMaxProjects] = useState(8)
+  const headerReveal = useReveal<HTMLDivElement>()
+  const gridReveal = useReveal<HTMLDivElement>({ threshold: 0.08 })
 
   useEffect(() => {
     const handleResize = () => {
@@ -68,7 +71,7 @@ export function ProjectsSection() {
             --projects-hue2: 220;
             --projects-border: 1px;
             --projects-border-color: hsl(var(--projects-hue2), 12%, 20%);
-            --projects-radius: 22px;
+            --projects-radius: 16px;
           }
 
           #projects {
@@ -625,7 +628,10 @@ export function ProjectsSection() {
       }} />
       <section id="projects" aria-label="Projects">
         <div className="max-w-6xl mx-auto w-full py-3">
-        <div className="text-center mb-4 space-y-4">
+        <div
+          ref={headerReveal.ref}
+          className={`text-center mb-4 space-y-4 reveal-up ${headerReveal.revealClass}`}
+        >
             <p className="projects-section-title">Selected Projects</p>
             <p className="text-lg text-white/70 max-w-2xl mx-auto leading-relaxed" style={{ fontFamily: "'Science Gothic', sans-serif", fontWeight: 300 }}>
             A selection of recent work that showcases my skills and expertise
@@ -633,15 +639,18 @@ export function ProjectsSection() {
         </div>
 
           <>
-            <div className="projects-grid grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div
+              ref={gridReveal.ref}
+              className={`projects-grid grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 reveal-stagger ${gridReveal.revealClass}`}
+            >
           {[...projects]
             .sort((a, b) => Number(b.year) - Number(a.year))
             .slice(0, maxProjects)
             .map((project, index) => (
             <article
                 key={project.id}
-                className="project-card animate-in fade-in slide-in-from-bottom"
-              style={{ animationDelay: `${index * 100}ms` }}
+                className="project-card reveal-item"
+              style={{ transitionDelay: gridReveal.isVisible ? `${Math.min(index, 9) * 60}ms` : undefined }}
                 onClick={() => openProject(project)}
                 onKeyDown={(event) => {
                   if (event.key === "Enter" || event.key === " ") {

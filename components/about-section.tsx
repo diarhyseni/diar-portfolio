@@ -1,8 +1,12 @@
 'use client'
 
 import { Briefcase, Code, Users, Zap, FileDown, Handshake, Sparkles, Target, GitBranch } from "lucide-react"
+import { useReveal } from "@/hooks/use-reveal"
 
 export function AboutSection() {
+  const textReveal = useReveal<HTMLDivElement>()
+  const strengthsReveal = useReveal<HTMLDivElement>({ threshold: 0.12 })
+
   // Calculate years of experience - increments in January each year
   const calculateYearsOfExperience = () => {
     const startDate = new Date(2022, 0, 1); // January 2022 (month is 0-indexed)
@@ -273,14 +277,6 @@ export function AboutSection() {
               max-width: 1000px;
               margin: 0 auto;
             }
-          }
-
-          .about-card-top {
-            transform: translateY(-20px);
-          }
-
-          .about-card-bottom {
-            transform: translateY(20px);
           }
 
           @media (max-width: 767px) {
@@ -1011,6 +1007,72 @@ export function AboutSection() {
             transition: color 0.3s ease;
           }
 
+          .about-strengths-stagger {
+            align-items: start;
+          }
+
+          .about-strengths-stagger > .about-strength-item {
+            opacity: 0;
+            transition:
+              opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: opacity, transform;
+          }
+
+          /* Stepped layout — left column up, right column down */
+          .about-strengths-stagger > .about-strength-item:nth-child(1) {
+            --step-x: 0px;
+            --step-y: -20px;
+            transform: translate(var(--step-x), calc(var(--step-y) - 1.25rem));
+          }
+
+          .about-strengths-stagger > .about-strength-item:nth-child(2) {
+            --step-x: 0px;
+            --step-y: 50px;
+            transform: translate(var(--step-x), var(--step-y));
+          }
+
+          .about-strengths-stagger > .about-strength-item:nth-child(3) {
+            --step-x: 0px;
+            --step-y: -20px;
+            transform: translate(var(--step-x), calc(var(--step-y) + 1.25rem));
+          }
+
+          .about-strengths-stagger > .about-strength-item:nth-child(4) {
+            --step-x: 0px;
+            --step-y: 50px;
+            transform: translate(var(--step-x), calc(var(--step-y) + 0.75rem));
+          }
+
+          .about-strengths-stagger.is-revealed > .about-strength-item {
+            opacity: 1;
+            transform: translate(var(--step-x), var(--step-y));
+          }
+
+          .about-strengths-stagger.is-revealed > .about-strength-item:nth-child(1) {
+            transition-delay: 0ms;
+          }
+
+          .about-strengths-stagger.is-revealed > .about-strength-item:nth-child(2) {
+            transition-delay: 280ms;
+          }
+
+          .about-strengths-stagger.is-revealed > .about-strength-item:nth-child(3) {
+            transition-delay: 560ms;
+          }
+
+          .about-strengths-stagger.is-revealed > .about-strength-item:nth-child(4) {
+            transition-delay: 840ms;
+          }
+
+          @media (prefers-reduced-motion: reduce) {
+            .about-strengths-stagger > .about-strength-item {
+              opacity: 1 !important;
+              transform: translate(var(--step-x), var(--step-y)) !important;
+              transition: none !important;
+            }
+          }
+
           .strength-icon.blue {
             color: white;
           }
@@ -1033,7 +1095,10 @@ export function AboutSection() {
         <div className="grid md:grid-cols-2 gap-8 items-center about-grid">
           {/* Left side - Text content */}
           <div className="space-y-6">
-            <div className="about-text-card about-card">
+            <div
+              ref={textReveal.ref}
+              className={`about-text-card about-card reveal-up ${textReveal.revealClass}`}
+            >
               <span className="shine shine-top"></span>
               <span className="shine shine-bottom"></span>
               <span className="glow glow-top"></span>
@@ -1093,11 +1158,14 @@ export function AboutSection() {
           {/* Right side - Strengths grid */}
           <div className="space-y-6">
             {/* Strengths grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-2 gap-4">
+            <div
+              ref={strengthsReveal.ref}
+              className={`grid grid-cols-2 sm:grid-cols-2 gap-4 about-strengths-stagger ${strengthsReveal.revealClass}`}
+            >
               {strengths.map((strength, index) => (
                 <div
                   key={strength.title}
-                  className={`about-card p-3 md:p-6 group ${index % 2 === 0 ? 'about-card-top' : 'about-card-bottom'}`}
+                  className={`about-card p-3 md:p-6 group about-strength-item ${index % 2 === 0 ? 'about-card-top' : 'about-card-bottom'}`}
                 >
                   <span className="shine shine-top"></span>
                   <span className="shine shine-bottom"></span>
