@@ -6,6 +6,10 @@ import { ExternalLink, Github, ChevronLeft, ChevronRight, ArrowUpRight } from "l
 import { getIconComponent } from "@/lib/icon-mapper"
 import { projects, type Project } from "@/lib/projects-data"
 import {
+  prefillContactMessage,
+  VIEW_ALL_PROJECTS_MESSAGE,
+} from "@/lib/contact-messages"
+import {
   Dialog,
   DialogContent,
   DialogHeader,
@@ -718,6 +722,7 @@ export function ProjectsSection() {
                 + 30 projects more,{" "}
                 <button
                   onClick={() => {
+                    prefillContactMessage(VIEW_ALL_PROJECTS_MESSAGE)
                     const section = document.getElementById('contact');
                     if (section) {
                       section.scrollIntoView({ behavior: 'smooth', block: 'start' });

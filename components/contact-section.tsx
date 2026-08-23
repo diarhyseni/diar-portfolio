@@ -5,9 +5,10 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Mail, Github, Linkedin } from "lucide-react"
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import { toast } from "sonner"
 import { useReveal } from "@/hooks/use-reveal"
+import { PREFILL_CONTACT_MESSAGE_EVENT } from "@/lib/contact-messages"
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
@@ -18,6 +19,25 @@ export function ContactSection() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const cardReveal = useReveal<HTMLDivElement>({ threshold: 0.12 })
+  const messageRef = useRef<HTMLTextAreaElement>(null)
+
+  useEffect(() => {
+    const handlePrefill = (event: Event) => {
+      const customEvent = event as CustomEvent<{ message?: string }>
+      const message = customEvent.detail?.message?.trim()
+      if (!message) return
+
+      setFormData((prev) => ({ ...prev, message }))
+      requestAnimationFrame(() => {
+        messageRef.current?.focus()
+        const length = message.length
+        messageRef.current?.setSelectionRange(length, length)
+      })
+    }
+
+    window.addEventListener(PREFILL_CONTACT_MESSAGE_EVENT, handlePrefill)
+    return () => window.removeEventListener(PREFILL_CONTACT_MESSAGE_EVENT, handlePrefill)
+  }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -973,6 +993,7 @@ export function ContactSection() {
                   Message
                 </label>
                     <textarea
+                  ref={messageRef}
                   id="message"
                   placeholder="Tell me about your project..."
                   value={formData.message}
