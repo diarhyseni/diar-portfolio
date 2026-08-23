@@ -149,14 +149,6 @@
     .strength-icon {
       animation: none !important;
     }
-
-    #home,
-    #skills,
-    #projects,
-    #contact {
-      content-visibility: auto;
-      contain-intrinsic-size: auto 100vh;
-    }
   }
 }
 

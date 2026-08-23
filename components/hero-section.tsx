@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Mail } from "lucide-react"
+import { getScrollRoot } from "@/hooks/use-reveal"
 
 const HERO_ROLES = ["Next.js Developer", "React Developer", "Full-Stack Developer"] as const
 
@@ -21,24 +22,20 @@ export function HeroSection() {
 
   useEffect(() => {
     const hero = document.getElementById("home")
-    const scrollRoot = document.getElementById("main-scroll")
     if (!hero) return
 
     let observer: IntersectionObserver | null = null
+    const isMobile = () => window.matchMedia("(max-width: 768px)").matches
 
     const setupObserver = () => {
       observer?.disconnect()
 
-      const root =
-        scrollRoot && scrollRoot.scrollHeight > scrollRoot.clientHeight + 1
-          ? scrollRoot
-          : null
-
+      const root = getScrollRoot()
       observer = new IntersectionObserver(
         ([entry]) => {
           setIsBgAnimPaused(!entry.isIntersecting)
         },
-        { root, threshold: 0.15 }
+        { root, threshold: isMobile() ? 0.05 : 0.15 }
       )
 
       observer.observe(hero)
@@ -375,6 +372,7 @@ export function HeroSection() {
           -webkit-backdrop-filter: blur(20px);
           box-shadow: hsl(var(--hero-hue2) 50% 2%) 0px 10px 16px -8px, hsl(var(--hero-hue2) 50% 4%) 0px 20px 36px -14px;
           overflow: visible;
+          z-index: 2;
           animation: hero-card-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
         }
 
@@ -408,10 +406,6 @@ export function HeroSection() {
             opacity: 1;
             transform: none;
           }
-        }
-          z-index: 2;
-          font-family: "Science Gothic", sans-serif;
-          font-weight: 300;
         }
 
         .hero-section-wrapper figure .shine,
@@ -815,11 +809,14 @@ export function HeroSection() {
 
         @media (max-width: 768px) {
           .hero-section-wrapper {
-            height: 70vh;
+            height: auto;
             min-height: 70vh;
-            max-height: 70vh;
-            padding: 2.5rem 1rem;
+            max-height: none;
+            padding: 1.25rem 1rem 2rem;
             overflow: visible;
+            align-items: flex-start;
+            justify-content: flex-start;
+            box-sizing: border-box;
           }
 
           .hero-section-wrapper figure {
@@ -827,6 +824,7 @@ export function HeroSection() {
             width: 100%;
             box-sizing: border-box;
             overflow: visible;
+            margin-top: 0;
           }
         }
 

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { getScrollRoot } from '@/hooks/use-reveal'
 
 const SECTIONS = ['home', 'about', 'experience', 'skills', 'projects', 'contact'] as const
 
@@ -29,6 +30,9 @@ export function SectionNavigation() {
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0)
 
   useEffect(() => {
+    const root = getScrollRoot()
+    const isMobile = window.matchMedia("(max-width: 768px)").matches
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -41,7 +45,7 @@ export function SectionNavigation() {
           }
         })
       },
-      { threshold: 0.5 }
+      { root, threshold: isMobile ? 0.2 : 0.5 }
     )
 
     SECTIONS.forEach((id) => {
