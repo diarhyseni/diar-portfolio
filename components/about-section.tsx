@@ -1,5 +1,6 @@
 'use client'
 
+import Link from "next/link"
 import { Briefcase, Code, Users, Zap, FileDown, Handshake, Sparkles, Target, GitBranch } from "lucide-react"
 import { useReveal } from "@/hooks/use-reveal"
 
@@ -875,6 +876,7 @@ export function AboutSection() {
             overflow: visible;
             clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
             width: 100%;
+            text-decoration: none;
           }
 
           @media (min-width: 640px) {
@@ -1135,10 +1137,9 @@ export function AboutSection() {
 
               {/* Buttons */}
               <div className="about-buttons">
-                <button className="about-button about-button-cv">
-                 
+                <Link href="/cv" className="about-button about-button-cv">
                   Download CV
-                </button>
+                </Link>
                 <button 
                   className="about-button about-button-hire"
                   onClick={() => {

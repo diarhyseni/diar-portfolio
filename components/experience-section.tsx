@@ -1,76 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-
-interface Experience {
-  period: string
-  company: string
-  companySub?: string
-  position: string
-  location: string
-}
-
-interface Education {
-  period: string
-  institution: string
-  degree: string
-  location: string
-}
-
-const experiences: Experience[] = [
-  {
-    period: "Jun / 2024 – Current",
-    company: "INSTABUILT L.L.C.",
-    position: "Full-Stack & CRM Developer",
-    location: "Prishtina (Kosovo)",
-  },
-  {
-    period: "Jan / 2023 – May / 2024",
-    company: "IT VISION",
-    companySub: "branch of Prishtina REA",
-    position: "React Developer",
-    location: "Prishtina (Kosovo)",
-  },
-  {
-    period: "Apr 2022 / Oct 2022",
-    company: "Terabit Engineering Solutions",
-    position: "Software Developer",
-    location: "Prishtina (Kosovo)",
-  },
-  {
-    period: "Jan / 2022 – Apr / 2022",
-    company: "Star Labs L.L.C. (Internship)",
-    position: "ASP .NET Developer",
-    location: "Prishtina (Kosovo)",
-  },
-]
-
-const educations: Education[] = [
-  {
-    period: "Mar / 2024",
-    institution: "The Ultimate React Course",
-    degree: "Udemy",
-    location: "Online",
-  },
-  {
-    period: "May / 2023",
-    institution: "The Complete JavaScript Course",
-    degree: "Udemy",
-    location: "Online",
-  },
-  {
-    period: "2018 - 2022",
-    institution: "Computer Science & Engineering",
-    degree: "Bachelor Degree",
-    location: "Prishtina (Kosovo)",
-  },
-  {
-    period: "Sep / 2020 – Jan / 2021",
-    institution: "ICT-Kosovo - Semester I",
-    degree: "Web Development Course (HTML, CSS, JavaScript)",
-    location: "Mitrovica (Kosovo)",
-  },
-]
+import { educations, experiences } from "@/lib/resume-data"
 
 export function ExperienceSection() {
   const [isVisible, setIsVisible] = useState(false)

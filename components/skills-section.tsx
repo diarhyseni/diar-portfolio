@@ -3,41 +3,9 @@
 import { useState } from "react"
 import { getIconComponent } from "@/lib/icon-mapper"
 import { useReveal } from "@/hooks/use-reveal"
+import { portfolioSkills } from "@/lib/resume-data"
 
 type SkillCategory = "all" | "frontend" | "backend" | "technologies"
-
-interface Skill {
-  name: string
-  categories: string[]
-  icon_name: string | null
-}
-
-const skills: Skill[] = [
-  { name: "HTML 5", icon_name: "SiHtml5", categories: ["frontend"] },
-  { name: "CSS 3", icon_name: "SiCss3", categories: ["frontend"] },
-  { name: "JavaScript", icon_name: "SiJavascript", categories: ["frontend"] },
-  { name: "TypeScript", icon_name: "SiTypescript", categories: ["frontend"] },
-  { name: "React", icon_name: "SiReact", categories: ["frontend"] },
-  { name: "Next.js", icon_name: "SiNextdotjs", categories: ["frontend"] },
-  { name: "Vuejs", icon_name: "SiVuedotjs", categories: ["frontend"] },
-  { name: "Tailwind", icon_name: "SiTailwindcss", categories: ["frontend"] },
-  { name: "Node.js", icon_name: "SiNodedotjs", categories: ["backend"] },
-  { name: "Express", icon_name: "SiExpress", categories: ["backend"] },
-  { name: "Java", icon_name: "JavaIcon", categories: ["backend"] },
-  { name: "PHP", icon_name: "SiPhp", categories: ["backend"] },
-  { name: "Asp .NET", icon_name: "SiDotnet", categories: ["backend"] },
-  { name: "MongoDB", icon_name: "SiMongodb", categories: ["technologies"] },
-  { name: "PostgreSQL", icon_name: "SiPostgresql", categories: ["technologies"] },
-  { name: "MySQL", icon_name: "SiMysql", categories: ["technologies"] },
-  { name: "Redis", icon_name: "SiRedis", categories: ["technologies"] },
-  { name: "WordPress", icon_name: "SiWordpress", categories: ["technologies"] },
-  { name: "Shopify", icon_name: "SiShopify", categories: ["technologies"] },
-  { name: "Supabase", icon_name: "SiSupabase", categories: ["technologies"] },
-  { name: "Git", icon_name: "SiGit", categories: ["technologies"] },
-  { name: "Docker", icon_name: "SiDocker", categories: ["technologies"] },
-  { name: "Figma", icon_name: "SiFigma", categories: ["technologies"] },
-  { name: "SEO", icon_name: "SeoIcon", categories: ["technologies"] },
-]
 
 export function SkillsSection() {
   const [activeFilter, setActiveFilter] = useState<SkillCategory>("all")
@@ -45,7 +13,7 @@ export function SkillsSection() {
   const gridReveal = useReveal<HTMLDivElement>({ threshold: 0.08 })
 
   // Transform skills for display with icons
-  const skillsWithIcons = skills.map(skill => {
+  const skillsWithIcons = portfolioSkills.map(skill => {
     const IconComponent = getIconComponent(skill.icon_name)
     
     return {
